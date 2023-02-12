@@ -1,6 +1,8 @@
+import re
 import time
 
 import streamlit as st
+from selenium.webdriver.common.by import By
 from streamlit_card import card
 from streamlit_option_menu import option_menu
 from streamlit.components.v1 import html
@@ -40,8 +42,6 @@ st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/di
             ' integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"'
             ' crossorigin="anonymous"></script>', unsafe_allow_html=True)
 
-driver = get_driver()
-driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
 
 
 
@@ -95,6 +95,14 @@ if selected == "Apprenante A2":
             url="https://github.com/gamcoh/st-card"
         )
 
+    driver = get_driver()
+    driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+    driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
+    page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
+    page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
+    st.markdown(page_total)
+    st.markdown(page_total_of_search)
+    st.code(driver.page_source)
 
 if selected == "Apprenante A1":
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
@@ -106,7 +114,7 @@ if selected == "Apprenante A1":
 
 
 
-st.code(driver.page_source)
+
 
 
 
