@@ -108,7 +108,7 @@ st.code(driver.page_source)
 my_js = """
 alert("Hola mundo");
 console.log("hello lhoussain");
-console.log(document.getElementsByClassName("viewerBadge_link__1S137"));
+console.log(document.getElementsByClassName("styles_stateContainer__29Rp6"));
 """
 
 # Wrapt the javascript as html code
