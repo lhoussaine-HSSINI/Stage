@@ -1,39 +1,18 @@
 import streamlit as st
-import datetime
-import json
-import time
-
-import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
-options = webdriver.ChromeOptions()
-#options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36')
-options.headless = True
-driver = webdriver.Chrome(options=options)
+@st.experimental_singleton
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-URL = 'https://selenium-python.readthedocs.io/locating-elements.html'
+options = Options()
+options.add_argument('--disable-gpu')
+options.add_argument('--headless')
 
-driver.get(URL)
+driver = get_driver()
+driver.get("http://example.com")
 
-# get the text from the page
-
-'''in the recent selenium version, to get the element of a page you need to use the following syntax:'''
-
-elem = driver.find_element(By.TAG_NAME, "body")
-
-# get the text from the page
-
-text = elem.text
-
-driver.quit()
-
-# load the text into a dataframe
-
-df = pd.DataFrame(text.splitlines())
-
-# save the dataframe as a csv file
-st.markdown("hellllllllllo")
-df.to_csv('selenium_text.csv', index=False)
-st.dataframe(df)
+st.code(driver.page_source)
