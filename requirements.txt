@@ -1,6 +1,6 @@
-selenium==4.8.0
-streamlit==1.18.1
-streamlit_card==0.0.4
-streamlit_javascript==0.1.5
-streamlit_option_menu==0.3.2
-webdriver_manager==3.8.5
+selenium
+streamlit
+streamlit_card
+streamlit_javascript
+streamlit_option_menu
+webdriver_manager
