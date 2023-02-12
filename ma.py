@@ -1,6 +1,8 @@
 import streamlit as st
 from streamlit_card import card
 from streamlit_option_menu import option_menu
+from streamlit.components.v1 import html
+
 
 
 
@@ -103,6 +105,14 @@ driver.get("https://google.com")
 
 st.code(driver.page_source)
 
+my_js = """
+alert("Hola mundo");
+console.log("hello lhoussain");
+"""
+
+# Wrapt the javascript as html code
+my_html = f"<script>{my_js}</script>"
+
 st.markdown("""
 <script>
             console.log(document.getElementsByClassName("viewerBadge_link__1S137"))
@@ -111,3 +121,4 @@ st.markdown("""
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 """, unsafe_allow_html=True)
+html(my_html)
