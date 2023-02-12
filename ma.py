@@ -98,10 +98,10 @@ if selected == "Apprenante A2":
     driver = get_driver()
     driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
-    page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
-    page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
-    st.markdown(page_total)
-    st.markdown(page_total_of_search)
+    # page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
+    # page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
+    # st.markdown(page_total)
+    # st.markdown(page_total_of_search)
     st.code(driver.page_source)
 
 if selected == "Apprenante A1":
