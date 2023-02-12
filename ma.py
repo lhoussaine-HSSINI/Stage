@@ -110,6 +110,8 @@ st.code(driver.page_source)
 my_js = """
 console.log("hello lhoussain");
 console.log(document.getElementsByClassName("styles_stateContainer__29Rp6"));
+const element = document.getElementsByTagName("a");
+consloe.log(element);
 """
 
 # Wrapt the javascript as html code
