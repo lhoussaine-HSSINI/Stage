@@ -30,10 +30,7 @@ st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/di
 
 
 
-driver = get_driver()
-driver.get("https://google.com")
 
-st.code(driver.page_source)
 
 styl = f"""
     <style>
@@ -92,7 +89,10 @@ if selected == "Apprenante A1":
                                       'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
                                       'Spécial Femme'])
 
+driver = get_driver()
+driver.get("https://google.com")
 
+st.code(driver.page_source)
 
 st.markdown("""
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
