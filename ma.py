@@ -102,6 +102,7 @@ if selected == "Apprenante A2":
     # page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
     # st.markdown(page_total)
     # st.markdown(page_total_of_search)
+    time.sleep(5)
     st.code(driver.page_source)
 
 if selected == "Apprenante A1":
