@@ -31,8 +31,23 @@ st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/di
 
 options = Options()
 options.add_argument('--disable-gpu')
-options.add_argument('--headless')
-@st.experimental_singleton
+options.add_argument("--test-type")
+options.add_argument('--log-level=3')
+options.add_argument("--start-maximized")
+options.add_argument("--disable-web-security")
+options.add_argument("--allow-running-insecure-content")
+options.add_argument("--mute-audio")
+# options.add_argument("--headless")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--disable-features=NetworkService")
+options.add_argument("--window-size=1920x1080")
+options.add_argument("--disable-features=VizDisplayCompositor")
+
+options.add_argument("--start-maximized")
+#     option.add_argument('--headless')
+options.add_argument('--disable-blink-features=AutomationControlled')
+@st.cache_resource
 def get_driver():
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     # return driver
