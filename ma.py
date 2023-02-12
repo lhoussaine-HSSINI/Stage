@@ -18,6 +18,7 @@ hide_streamlit_style = """
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             .viewerBadge_container__1QSob{display: none !important;}
+            a {display: none;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -125,3 +126,9 @@ st.markdown("""
 html(my_html)
 from streamlit_javascript import st_javascript
 st_javascript(my_js)
+
+hide_streamlit_style = """
+            <style> a {display: none !important;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
