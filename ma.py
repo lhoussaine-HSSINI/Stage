@@ -29,7 +29,7 @@ def get_driver():
 
 options = Options()
 options.add_argument('--disable-gpu')
-options.add_argument('--headless')
+# options.add_argument('--headless')
 
 
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" '
