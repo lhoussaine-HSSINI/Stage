@@ -46,10 +46,10 @@ st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/di
 
 @st.cache_resource
 def get_driver():
-    S = Service("chromedriver/chromedriver.exe")
+    S = Service("C:\\Users\\faho_\\PycharmProjects\\test\\.streamlit\\chromedriver\\chromedriver.exe")
     # driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
-    return webdriver.Chrome(options=options)
-    # return driver     return webdriver.Chrome(service=S, options=options)
+    return webdriver.Chrome(service=S, options=options)
+    # return driver
 @st.cache_resource
 def get_ofre_stage_indeed():
     driver_inded = get_driver()
