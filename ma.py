@@ -25,6 +25,6 @@ with st.echo():
     options.add_argument('--headless')
 
     driver = get_driver()
-    driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+    driver.get("https://google.com")
 
     st.code(driver.page_source)
