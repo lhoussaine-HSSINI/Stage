@@ -56,16 +56,18 @@ def get_ofre_stage_indeed():
 
     driver_inded = get_driver()
     key_search="stage web"
-    driver_inded.get('https://ma.indeed.com/jobs?q=stage+web&fromage=1')
-    time.sleep(10)
-    list_page=[]
-    # driver_inded.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
-    time.sleep(10)
-    list_page_sel=driver_inded.find_elements(by=By.CSS_SELECTOR, value="div[class='css-tvvxwd ecydgvn1']")
-    page_total = driver_inded.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
-    page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
-    st.markdown(page_total)
-    st.markdown(page_total_of_search)
+    # driver_inded.get('https://ma.indeed.com/jobs?q=stage+web&fromage=1')
+    driver_inded.get('https://google.com/')
+    # time.sleep(10)
+    # list_page=[]
+    # # driver_inded.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
+    # time.sleep(10)
+    # list_page_sel=driver_inded.find_elements(by=By.CSS_SELECTOR, value="div[class='css-tvvxwd ecydgvn1']")
+    # page_total = driver_inded.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
+    # page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
+    # st.markdown(page_total)
+    # st.markdown(page_total_of_search)
+    st.markdown(driver_inded.page_source)
 
 
     # key_word=driver_inded.find_element(by=By.ID,value='text-input-what')
