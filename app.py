@@ -42,7 +42,7 @@ def get_driver():
     try:
         if platform.system() == 'Windows':
             options = Options()
-            # options.add_argument('--headless')
+            options.add_argument('--headless')
             options.add_argument('--log-level=3')  # when running locally
             options.add_argument('--disable-gpu')
             browser = webdriver.Chrome(path, options=options)  # Chrome Driver Windows Path --if running on windows
@@ -51,7 +51,7 @@ def get_driver():
             options = Options()
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-dev-shm-usage')
-            # options.add_argument('--headless')
+            options.add_argument('--headless')
             options.add_argument('--log-level=3')
             browser = webdriver.Chrome(options=options)  # Chrome Driver Linux Path --if running on linux (Streamlit Debian Deployment)
             return browser
