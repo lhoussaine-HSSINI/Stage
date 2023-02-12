@@ -1,3 +1,5 @@
+import os
+import pathlib
 import re
 # from selenium.webdriver.support.ui import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as EC
@@ -25,7 +27,7 @@ options.add_experimental_option('prefs', {
 })
 options.add_experimental_option("useAutomationExtension", False)
 # options.add_argument('--headless')
-# options.add_argument("--headless")
+options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 options.add_argument("--disable-gpu")
@@ -46,7 +48,13 @@ st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/di
 
 @st.cache_resource
 def get_driver():
-    S = Service("C:\\Users\\faho_\\PycharmProjects\\test\\.streamlit\\chromedriver\\chromedriver.exe")
+    cwd = os.getcwd()  # Current Path
+    driver_dir = cwd + "\chromedriver.exe"  # chrome driver for running script locally
+    try:
+        path = pathlib.Path(__file__).parent / 'chromedriver.exe'  # try to pull chrome driver from local
+    except Exception as e:
+        path = driver_dir
+    S = Service(path)
     # driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
     return webdriver.Chrome(service=S, options=options)
     # return driver
