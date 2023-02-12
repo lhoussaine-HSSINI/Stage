@@ -15,6 +15,10 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
+from selenium.webdriver import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+
+
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -27,7 +31,10 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 @st.experimental_singleton
 def get_driver():
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver_1 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    wait = WebDriverWait(driver_1, 20)
+    action = ActionChains(driver_1)
+    return driver_1
 
 options = Options()
 options.add_argument('--disable-gpu')
@@ -46,6 +53,9 @@ options.add_argument("--disable-features=VizDisplayCompositor")
 
 options.add_argument("--start-maximized")
 options.add_argument('--disable-blink-features=AutomationControlled')
+user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.517 Safari/537.36'
+options.add_argument('user-agent={0}'.format(user_agent))
+
 
 
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" '
