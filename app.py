@@ -9,16 +9,16 @@ import time
 
 import streamlit as st
 # from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+
 from selenium.webdriver.common.by import By
 # import requests
 from streamlit_card import card
 from streamlit_card import _streamlit_card
 from streamlit_option_menu import option_menu
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.utils import ChromeType
 
 
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" '
@@ -29,39 +29,16 @@ st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/di
             ' integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"'
             ' crossorigin="anonymous"></script>', unsafe_allow_html=True)
 
-@st.cache_resource
+options = Options()
+options.add_argument('--disable-gpu')
+options.add_argument('--headless')
+@st.experimental_singleton
 def get_driver():
-    cwd = os.getcwd()  # Current Path
-    driver_dir = cwd + "\chromedriver.exe"  # chrome driver for running script locally
-    try:
-        path = pathlib.Path(__file__).parent / 'chromedriver.exe'  # try to pull chrome driver from local
-    except Exception as e:
-        path = driver_dir
-    S = Service(path)
-    # return webdriver.Chrome(service=S, options=options)
-    try:
-        if platform.system() == 'Windows':
-            options = Options()
-            options.add_argument('--headless')
-            options.add_argument('--log-level=3')  # when running locally
-            options.add_argument('--disable-gpu')
-            browser = webdriver.Chrome(path, options=options)  # Chrome Driver Windows Path --if running on windows
-            return browser
-        else:  # if platform is 'Debian/linux'
-            options = Options()
-            options.add_argument('--no-sandbox')
-            options.add_argument('--disable-dev-shm-usage')
-            options.add_argument('--headless')
-            options.add_argument('--log-level=3')
-            browser = webdriver.Chrome(options=options)  # Chrome Driver Linux Path --if running on linux (Streamlit Debian Deployment)
-            return browser
-    except Exception as e:
-        print(e)
-        print('invalid zipcode')
-        sys.exit()
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     # return driver
 @st.cache_resource
 def get_ofre_stage_indeed():
+
     driver_inded = get_driver()
     key_search="stage web"
     driver_inded.get('https://ma.indeed.com/jobs?q=stage+web&fromage=1')

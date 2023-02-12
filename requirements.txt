@@ -1,4 +1,6 @@
 
 streamlit
+streamlit-option-menu
+streamlit_card
 seleniumbase
 webdriver-manager
