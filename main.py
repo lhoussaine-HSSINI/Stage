@@ -1,6 +1,8 @@
 import os
 import pathlib
+import platform
 import re
+import sys
 # from selenium.webdriver.support.ui import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as EC
 import time
@@ -18,26 +20,7 @@ from streamlit_option_menu import option_menu
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 
-options = Options()
-options.add_experimental_option('prefs', {
-    'credentials_enable_service': False,
-    'profile': {
-        'password_manager_enabled': False
-    }
-})
-options.add_experimental_option("useAutomationExtension", False)
-# options.add_argument('--headless')
-options.add_argument("--headless")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-options.add_argument("--disable-gpu")
-options.add_argument("--disable-features=NetworkService")
-options.add_argument("--window-size=1920x1080")
-options.add_argument("--disable-features=VizDisplayCompositor")
-options.add_argument("disable-blink-features")
-options.add_argument("disable-blink-features=AutomationControlled")
-options.add_argument("--disable-3d-apis")
-options.add_experimental_option("excludeSwitches", ["enable-logging"])
+
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" '
             'integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" '
             'crossorigin="anonymous">',
@@ -55,8 +38,27 @@ def get_driver():
     except Exception as e:
         path = driver_dir
     S = Service(path)
-    # driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
-    return webdriver.Chrome(service=S, options=options)
+    # return webdriver.Chrome(service=S, options=options)
+    try:
+        if platform.system() == 'Windows':
+            options = Options()
+            # options.add_argument('--headless')
+            options.add_argument('--log-level=3')  # when running locally
+            options.add_argument('--disable-gpu')
+            browser = webdriver.Chrome(path, options=options)  # Chrome Driver Windows Path --if running on windows
+            return browser
+        else:  # if platform is 'Debian/linux'
+            options = Options()
+            options.add_argument('--no-sandbox')
+            options.add_argument('--disable-dev-shm-usage')
+            # options.add_argument('--headless')
+            options.add_argument('--log-level=3')
+            browser = webdriver.Chrome(options=options)  # Chrome Driver Linux Path --if running on linux (Streamlit Debian Deployment)
+            return browser
+    except Exception as e:
+        print(e)
+        print('invalid zipcode')
+        sys.exit()
     # return driver
 @st.cache_resource
 def get_ofre_stage_indeed():
