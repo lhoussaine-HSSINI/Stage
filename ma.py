@@ -40,7 +40,8 @@ st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/di
             ' integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"'
             ' crossorigin="anonymous"></script>', unsafe_allow_html=True)
 
-
+driver = get_driver()
+driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
 
 
 
@@ -103,8 +104,7 @@ if selected == "Apprenante A1":
                                       'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
                                       'Spécial Femme'])
 
-driver = get_driver()
-driver.get("https://google.com")
+
 
 st.code(driver.page_source)
 
