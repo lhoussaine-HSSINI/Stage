@@ -133,7 +133,7 @@ if selected == "Apprenante A2":
     list_image=[]
     list_nom=[]
     for i in range(len(list_li)):
-        st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']"))
+        st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
     st.code(list_li)
 
 if selected == "Apprenante A1":
