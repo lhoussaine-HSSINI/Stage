@@ -1,7 +1,7 @@
 import re
 import time
 import json
-
+import requests
 import streamlit as st
 from selenium.webdriver.common.by import By
 from streamlit_card import card
