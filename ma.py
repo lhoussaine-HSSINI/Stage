@@ -1,11 +1,13 @@
 import re
 import time
+import json
 
 import streamlit as st
 from selenium.webdriver.common.by import By
 from streamlit_card import card
 from streamlit_option_menu import option_menu
 from streamlit.components.v1 import html
+from streamlit_lottie import st_lottie
 
 
 
@@ -148,7 +150,20 @@ if selected == "Apprenante A1":
 
 
 
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
+
+lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
+lottie_url_download = "https://assets4.lottiefiles.com/private_files/lf30_t26law.json"
+lottie_hello = load_lottieurl(lottie_url_hello)
+lottie_download = load_lottieurl(lottie_url_download)
+
+
+st_lottie(lottie_hello, key="hello")
 st.markdown("""
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
