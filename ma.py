@@ -134,7 +134,6 @@ if selected == "Apprenante A2":
     list_nom=[]
     for i in range(len(list_li)):
         st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
-    st.code(list_li)
 
 if selected == "Apprenante A1":
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
