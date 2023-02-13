@@ -126,10 +126,11 @@ if selected == "Apprenante A2":
     # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
     page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
     page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
+    list_li=driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
     st.markdown(page_total)
     st.markdown(page_total_of_search)
 
-    st.code(driver.page_source)
+    st.code(list_li)
 
 if selected == "Apprenante A1":
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
@@ -150,8 +151,3 @@ st.markdown("""
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 """, unsafe_allow_html=True)
-my_js = """ a {display: none !important;} """
-
-# Wrapt the javascript as html code
-my_html = f"<style>{my_js}</style>"
-html(my_html)
