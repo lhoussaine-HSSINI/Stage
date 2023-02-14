@@ -140,7 +140,6 @@ if selected == "Apprenante A2":
         card(key=2,
             title="Hello World!",
             text="Some description",
-            image="http://placekitten.com/200/300",
             url="https://github.com/gamcoh/st-card"
         )
 
