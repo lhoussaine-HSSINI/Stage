@@ -137,7 +137,7 @@ if selected == "Apprenante A2":
             url="https://github.com/gamcoh/st-card"
         )
     with c_2:
-        hasClicked_2 = card(key=2,
+        card(key=2,
             title="Hello World!",
             text="Some description",
             image="http://placekitten.com/200/300",
