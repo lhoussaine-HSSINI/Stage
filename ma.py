@@ -196,7 +196,7 @@ if selected == "Apprenante A2":
                           <img src="https://app.vuejobs.com/storage/1740/d40371ca-c586-4a9a-b5e9-4f6bc21d7e37.com" alt="aa" width="65" class="rounded-3">
                       </div>
                       <div class="mx-1">
-                          <div class="font-weight-bold leading-tight font-display">hhhhh</div>
+                          <div class="font-weight-bold leading-tight font-display">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text}</div>
                           <div class="text-muted font-medium text-sm my-1">kjcj vkec dcjecc cbbc cuoc uc</div>
                           <div class="text-muted font-medium text-sm">Casablanca</div>
                       </div>
