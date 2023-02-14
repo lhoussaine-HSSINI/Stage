@@ -159,20 +159,20 @@ if selected == "Apprenante A2":
     #         url="https://github.com/gamcoh/st-card"
     #     )
     # with c_2:
-    st.markdown("""
-        <a href="" class="card p-4 bg-white border rounded-lg">
-          <div class="d-flex align-items-center">
-              <div class="mx-1 ">
-                  <img src="https://app.vuejobs.com/storage/1740/d40371ca-c586-4a9a-b5e9-4f6bc21d7e37.com" alt="aa" width="65" class="rounded-3">
-              </div>
-              <div class="mx-1">
-                  <div class="font-weight-bold leading-tight font-display">hello hhhhhhh hhshs</div>
-                  <div class="text-muted font-medium text-sm my-1">kjcj vkec dcjecc cbbc cuoc uc</div>
-                  <div class="text-muted font-medium text-sm">Casablanca</div>
-              </div>
-          </div>
-    </a>
-    """, unsafe_allow_html=True)
+    # st.markdown("""
+    #         <a href="" class="card p-4 bg-white border rounded-lg">
+    #           <div class="d-flex align-items-center">
+    #               <div class="mx-1 ">
+    #                   <img src="https://app.vuejobs.com/storage/1740/d40371ca-c586-4a9a-b5e9-4f6bc21d7e37.com" alt="aa" width="65" class="rounded-3">
+    #               </div>
+    #               <div class="mx-1">
+    #                   <div class="font-weight-bold leading-tight font-display">hello hhhhhhh hhshs</div>
+    #                   <div class="text-muted font-medium text-sm my-1">kjcj vkec dcjecc cbbc cuoc uc</div>
+    #                   <div class="text-muted font-medium text-sm">Casablanca</div>
+    #               </div>
+    #           </div>
+    #     </a>
+    #     """, unsafe_allow_html=True)
 
     driver = get_driver()
     # driver.get("https://ma.indeed.com")
@@ -188,7 +188,21 @@ if selected == "Apprenante A2":
     list_image=[]
     list_nom=[]
     for i in range(len(list_li)):
-        st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
+        # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
+        st.markdown("""
+                <a href="" class="card p-4 bg-white border rounded-lg">
+                  <div class="d-flex align-items-center">
+                      <div class="mx-1 ">
+                          <img src="https://app.vuejobs.com/storage/1740/d40371ca-c586-4a9a-b5e9-4f6bc21d7e37.com" alt="aa" width="65" class="rounded-3">
+                      </div>
+                      <div class="mx-1">
+                          <div class="font-weight-bold leading-tight font-display">hello hhhhhhh hhshs</div>
+                          <div class="text-muted font-medium text-sm my-1">kjcj vkec dcjecc cbbc cuoc uc</div>
+                          <div class="text-muted font-medium text-sm">Casablanca</div>
+                      </div>
+                  </div>
+            </a>
+            """, unsafe_allow_html=True)
 
 if selected == "Apprenante A1":
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
