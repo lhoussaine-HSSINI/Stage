@@ -81,6 +81,19 @@ styl = f"""
     </style>
     """
 st.markdown(styl, unsafe_allow_html=True)
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+
+lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
+lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.json"
+lottie_hello = load_lottieurl(lottie_url_hello)
+lottie_download = load_lottieurl(lottie_url_download)
+
+
 with st.sidebar:
     selected = option_menu(None, ["Home","Apprenante A2", "Apprenante A1"],
                             icons=['house', 'person-workspace', 'person-workspace'], default_index=0,
@@ -94,8 +107,18 @@ with st.sidebar:
 
 if selected =="Home":
     st.markdown(""" <h1 class='text-center fs-1 headdd'> Bienvenue au FAHO WORK </h1> """,  unsafe_allow_html=True)
-    st.markdown(""" <p class='text-center mb-3' style='margin-top: -100px !important;' >  
-     vous pouvez cherchez votre  stage  ou stage pre-embauche dans la platforme</p> """,  unsafe_allow_html=True)
+
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown(""" <p class='text-center mb-3' style='margin-top: -100px !important;' >  
+             vous pouvez cherchez votre  stage  ou stage pre-embauche dans la platforme</p> """,
+                    unsafe_allow_html=True)
+    with c2:
+        st_lottie(lottie_download, speed=1, reverse=False, loop=True,
+                  quality="low", height=None, width=None, key="aa")
+
+
+
 if selected == "Apprenante A2":
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage pre-embauche</h1> """, unsafe_allow_html=True)
     Categorie_add_1 = st.multiselect('competence',
@@ -150,25 +173,7 @@ if selected == "Apprenante A1":
 
 
 
-def load_lottieurl(url: str):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
 
-
-lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
-lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.json"
-lottie_hello = load_lottieurl(lottie_url_hello)
-lottie_download = load_lottieurl(lottie_url_download)
-
-c1, c2=st.columns(2)
-with c1:
-    st_lottie(lottie_download,speed=1,reverse=False,loop=True,
-            quality="low", height=None, width=None,key="bb")
-with c2:
-    st_lottie(lottie_download, speed=1, reverse=False, loop=True,
-              quality="low", height=None, width=None, key="aa")
 
 st.markdown("""
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
