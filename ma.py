@@ -31,7 +31,7 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-@st.experimental_singleton
+@st.cache_resource
 def get_driver():
     driver_1 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     wait = WebDriverWait(driver_1, 20)
