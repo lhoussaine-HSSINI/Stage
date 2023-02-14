@@ -27,6 +27,27 @@ hide_streamlit_style = """
             footer {visibility: hidden;}
             .viewerBadge_container__1QSob{display: none !important;}
             a {display: none;}
+            .leading-tight {
+            line-height: 1.25;
+        }
+        .text-muted {
+            --tw-text-opacity: 1;
+            color: #6b7280;
+            color: rgb(107 114 128/var(--tw-text-opacity));
+        }
+        .font-medium {
+            font-weight: 500;
+        }
+        .text-sm {
+            font-size: .875rem;
+            line-height: 1.25rem;
+        }
+        .font-display {
+            font-family: Outfit,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+        }
+        a, a:hover{
+            text-decoration: none;
+        }
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -78,27 +99,7 @@ styl = f"""
         .headdd{{
                     margin-top: -100px !important;
         }}
-        .leading-tight {
-            line-height: 1.25;
-        }
-        .text-muted {
-            --tw-text-opacity: 1;
-            color: #6b7280;
-            color: rgb(107 114 128/var(--tw-text-opacity));
-        }
-        .font-medium {
-            font-weight: 500;
-        }
-        .text-sm {
-            font-size: .875rem;
-            line-height: 1.25rem;
-        }
-        .font-display {
-            font-family: Outfit,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-        }
-        a, a:hover{
-            text-decoration: none;
-        }
+        
     </style>
     """
 st.markdown(styl, unsafe_allow_html=True)
