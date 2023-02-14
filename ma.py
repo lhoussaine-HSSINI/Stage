@@ -78,6 +78,27 @@ styl = f"""
         .headdd{{
                     margin-top: -100px !important;
         }}
+        .leading-tight {
+            line-height: 1.25;
+        }
+        .text-muted {
+            --tw-text-opacity: 1;
+            color: #6b7280;
+            color: rgb(107 114 128/var(--tw-text-opacity));
+        }
+        .font-medium {
+            font-weight: 500;
+        }
+        .text-sm {
+            font-size: .875rem;
+            line-height: 1.25rem;
+        }
+        .font-display {
+            font-family: Outfit,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+        }
+        a, a:hover{
+            text-decoration: none;
+        }
     </style>
     """
 st.markdown(styl, unsafe_allow_html=True)
@@ -138,12 +159,18 @@ if selected == "Apprenante A2":
     #     )
     # with c_2:
     st.markdown("""
-        <div class="card" style="width: 18rem;">
-          <img src="http://placekitten.com/200/300" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="" class="card p-4 bg-white border rounded-lg">
+          <div class="d-flex align-items-center">
+              <div class="mx-1 ">
+                  <img src="https://app.vuejobs.com/storage/1740/d40371ca-c586-4a9a-b5e9-4f6bc21d7e37.com" alt="aa" width="65" class="rounded-3">
+              </div>
+              <div class="mx-1">
+                  <div class="font-weight-bold leading-tight font-display">hello hhhhhhh hhshs</div>
+                  <div class="text-muted font-medium text-sm my-1">kjcj vkec dcjecc cbbc cuoc uc</div>
+                  <div class="text-muted font-medium text-sm">Casablanca</div>
+              </div>
           </div>
-        </div>
+    </a>
     """, unsafe_allow_html=True)
 
     driver = get_driver()
