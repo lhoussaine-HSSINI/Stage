@@ -189,14 +189,14 @@ if selected == "Apprenante A2":
     list_nom=[]
     for i in range(len(list_li)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
-        st.markdown("""
+        st.markdown(f"""
                 <a href="" class="my-2 card p-4 bg-white border rounded-lg">
                   <div class="d-flex align-items-center">
                       <div class="mx-1 ">
                           <img src="https://app.vuejobs.com/storage/1740/d40371ca-c586-4a9a-b5e9-4f6bc21d7e37.com" alt="aa" width="65" class="rounded-3">
                       </div>
                       <div class="mx-1">
-                          <div class="font-weight-bold leading-tight font-display">hello hhhhhhh hhshs</div>
+                          <div class="font-weight-bold leading-tight font-display">hhhhh</div>
                           <div class="text-muted font-medium text-sm my-1">kjcj vkec dcjecc cbbc cuoc uc</div>
                           <div class="text-muted font-medium text-sm">Casablanca</div>
                       </div>
