@@ -162,9 +162,14 @@ lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.js
 lottie_hello = load_lottieurl(lottie_url_hello)
 lottie_download = load_lottieurl(lottie_url_download)
 
+c1, c2=st.columns(2)
+with c1:
+    st_lottie(lottie_download,speed=1,reverse=False,loop=True,
+            quality="low", height=None, width=None,key="bb")
+with c2:
+    st_lottie(lottie_download, speed=1, reverse=False, loop=True,
+              quality="low", height=None, width=None, key="aa")
 
-st_lottie(lottie_hello, key="hello")
-st_lottie(lottie_download, key="dow")
 st.markdown("""
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
