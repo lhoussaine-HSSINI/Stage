@@ -128,23 +128,23 @@ if selected == "Apprenante A2":
                                       'Spécial Femme'])
 
 
-    c_1 ,c_2=st.columns(2)
-    with c_1:
-        hasClicked_1 = card(key=1,
-            title="Hello World!",
-            text="Some description",
-            image="http://placekitten.com/200/300",
-            url="https://github.com/gamcoh/st-card"
-        )
-    with c_2:
-        st.markdown("""
-            <div class="card" style="width: 18rem;">
-              <img src="http://placekitten.com/200/300" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-        """, unsafe_allow_html=True)
+    # c_1 ,c_2=st.columns(2)
+    # with c_1:
+    #     hasClicked_1 = card(key=1,
+    #         title="Hello World!",
+    #         text="Some description",
+    #         image="http://placekitten.com/200/300",
+    #         url="https://github.com/gamcoh/st-card"
+    #     )
+    # with c_2:
+    st.markdown("""
+        <div class="card" style="width: 18rem;">
+          <img src="http://placekitten.com/200/300" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+    """, unsafe_allow_html=True)
 
     driver = get_driver()
     # driver.get("https://ma.indeed.com")
