@@ -197,7 +197,7 @@ if selected == "Apprenante A2":
                       </div>
                       <div class="mx-1">
                           <div class="font-weight-bold leading-tight font-display">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text}</div>
-                          <div class="text-muted font-medium text-sm my-1">{list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text}</div>
+                          <div class="text-muted font-medium text-sm my-1">kjcj vkec dcjecc cbbc cuoc uc</div>
                           <div class="text-muted font-medium text-sm">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text}</div>
                       </div>
                   </div>
