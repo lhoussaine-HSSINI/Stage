@@ -137,11 +137,14 @@ if selected == "Apprenante A2":
             url="https://github.com/gamcoh/st-card"
         )
     with c_2:
-        card(key=2,
-            title="Hello World!",
-            text="Some description",
-            url="https://github.com/gamcoh/st-card"
-        )
+        st.markdown("""
+            <div class="card" style="width: 18rem;">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        """)
 
     driver = get_driver()
     # driver.get("https://ma.indeed.com")
