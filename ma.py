@@ -139,12 +139,12 @@ if selected == "Apprenante A2":
     with c_2:
         st.markdown("""
             <div class="card" style="width: 18rem;">
-              <img src="..." class="card-img-top" alt="...">
+              <img src="http://placekitten.com/200/300" class="card-img-top" alt="...">
               <div class="card-body">
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               </div>
             </div>
-        """)
+        """, unsafe_allow_html=True)
 
     driver = get_driver()
     # driver.get("https://ma.indeed.com")
