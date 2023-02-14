@@ -115,7 +115,7 @@ if selected =="Home":
                     unsafe_allow_html=True)
     with c2:
         st_lottie(lottie_download, speed=1, reverse=False, loop=True,
-                  quality="low", height=None, width=None, key="aa")
+                  quality="low", height=None, width=None, key=None)
 
 
 
