@@ -237,7 +237,7 @@ if selected == "Apprenante A2":
     display_data(list_li)
     st.markdown(counttt)
 
-    st.container(driver.get(f"https://www.linkedin.com"))
+    st.container(driver.get("https://www.linkedin.com"))
 
 
 
