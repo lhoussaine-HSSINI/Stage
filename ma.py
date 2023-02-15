@@ -203,7 +203,8 @@ if selected == "Apprenante A2":
                 st.code(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter - 1}0")
                 i_counter += 1
         break
-
+    st.markdown(list_li)
+    st.markdown(len(list_li))
     for i in range(len(list_li)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
         try:
