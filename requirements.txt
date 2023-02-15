@@ -5,3 +5,4 @@ streamlit_javascript
 streamlit_option_menu
 streamlit_lottie
 webdriver_manager
+bs4
