@@ -197,7 +197,6 @@ if selected == "Apprenante A2":
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
         try:
             st.markdown(f"""
-                    <script src="https://kit.fontawesome.com/e9308f68a0.js" crossorigin="anonymous"></script>
                     <a href="{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")}" class="my-2 card p-4 bg-white border rounded-lg">
                       <div class="d-flex align-items-center">
                           <div class="mx-1 ">
