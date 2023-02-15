@@ -178,7 +178,6 @@ if selected == "Apprenante A2":
     # driver.get("https://ma.indeed.com")
     # time.sleep(5)
     driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
-    # https: // ma.indeed.com / jobs?q = stage + web & fromage = 1 & start = 10
     # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
     page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
     page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
@@ -188,14 +187,6 @@ if selected == "Apprenante A2":
     list_name=[]
     list_image=[]
     list_nom=[]
-    i_counter=2
-    while True:
-        if i_counter <= page_total_of_search:
-            driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1 & start = {i_counter-1}0")
-            list_li_1 = driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
-            st.code(len(list_li_1))
-            i_counter+=1
-        break
 
     for i in range(len(list_li)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
