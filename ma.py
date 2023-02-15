@@ -194,6 +194,8 @@ if selected == "Apprenante A2":
             driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1 & start = {i_counter-1}0")
             list_li_1 = driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
             st.code(len(list_li_1))
+            i_counter+=1
+        break
 
     for i in range(len(list_li)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
