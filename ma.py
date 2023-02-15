@@ -8,7 +8,7 @@ from streamlit_card import card
 from streamlit_option_menu import option_menu
 from streamlit.components.v1 import html
 from streamlit_lottie import st_lottie
-
+from bs4 import BeautifulSoup
 
 
 
@@ -236,6 +236,7 @@ if selected == "Apprenante A2":
     st.markdown(page_total_of_search)
 
     display_data(list_li)
+    stocke_data(list_li)
     counttt=len(list_li)
     i_counter = 1
     while True:
@@ -245,12 +246,14 @@ if selected == "Apprenante A2":
                                              value="div[class='slider_container css-g7s71f eu4oa1w0']")
             counttt+=len(list_li)
             # st.markdown(i_counter)
+            display_data(list_li)
+            stocke_data(list_li)
             i_counter += 1
         else:
             break
-    display_data(list_li)
+
     st.markdown(counttt)
-    stocke_data(list_li)
+
     st.markdown(list_discription)
 
 
