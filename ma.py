@@ -231,8 +231,9 @@ if selected == "Apprenante A2":
                                              value="div[class='slider_container css-g7s71f eu4oa1w0']")
             st.markdown(i_counter)
             i_counter += 1
-        break
-    display_data(list_li)
+        else:
+            break
+    # display_data(list_li)
 
 
 
