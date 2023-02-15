@@ -183,12 +183,14 @@ if selected == "Apprenante A2":
     list_li=driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
     st.markdown(page_total)
     st.markdown(page_total_of_search)
-    list_name=[]
-    list_image=[]
-    list_nom=[]
+    list_title_jobs=[]
+    list_company_location=[]
+    list_company_name=[]
+    list_=[]
 
     for i in range(len(list_li)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
+        st.code(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
         try:
             st.markdown(f"""
                     <a href="" class="my-2 card p-4 bg-white border rounded-lg">
