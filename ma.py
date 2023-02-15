@@ -192,7 +192,7 @@ if selected == "Apprenante A2":
     list_company_location=[]
     list_company_name=[]
     list_=[]
-
+    st.markdown(""" <script src='https://kit.fontawesome.com/e9308f68a0.js' crossorigin='anonymous'></script> """, unsafe_allow_html=True)
     for i in range(len(list_li)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
         try:
