@@ -6,3 +6,4 @@ streamlit_option_menu
 streamlit_lottie
 webdriver_manager
 bs4
+lxml
