@@ -116,6 +116,7 @@ def load_lottieurl(url: str):
     return r.json()
 
 def stocke_data(list_li):
+    global list_discription
     for i in range(len(list_li)):
         # list_title_jobs.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
         # list_company_location.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text)
