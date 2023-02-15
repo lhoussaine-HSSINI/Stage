@@ -122,7 +122,7 @@ def stocke_data(list_li):
         # list_company_name.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text)
         # list_link_job.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
         list_discription.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
-        # st.code(list_li)
+        st.code(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
 
 def display_data(list_li):
     for i in range(len(list_li)):
