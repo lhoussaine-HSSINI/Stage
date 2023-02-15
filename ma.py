@@ -197,7 +197,7 @@ if selected == "Apprenante A2":
                           <div class="mx-1 ">
                               # <img src="https://app.vuejobs.com/storage/1740/d40371ca-c586-4a9a-b5e9-4f6bc21d7e37.com" alt="aa" width="65" class="rounded-3">
                               {st_lottie(lottie_download, speed=1, reverse=False, loop=True,
-                  quality="low", height=None, width=None, key=None)}
+                  quality="low", height=None, width=None, key=i)}
                           </div>
                           <div class="mx-1">
                               <div class="font-weight-bold leading-tight font-display">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text}</div>
