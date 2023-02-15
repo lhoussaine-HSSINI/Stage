@@ -247,13 +247,12 @@ if selected == "Apprenante A2":
             # st.markdown(i_counter)
             display_data(list_li)
             stocke_data(list_li)
+            st.markdown(len(list_li))
             i_counter += 1
         else:
             break
 
     st.markdown(counttt)
-
-    st.code(list_discription)
 
 
 
