@@ -120,11 +120,17 @@ def stocke_data(list_li):
     for i in range(len(list_li)):
         title=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text
         st.code(title)
-        # list_title_jobs.append()
-        list_company_location.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text)
-        list_company_name.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text)
-        list_link_job.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
-        list_discription.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
+        list_title_jobs.append(title)
+        comany_location=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text
+        st.code(comany_location)
+        list_company_location.append(comany_location)
+        company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
+        st.code(company_name)
+        list_company_name.append(company_name)
+        link_job =list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")
+        st.code(link_job)
+        list_link_job.append(link_job)
+        list_discription.append(link_job)
         # st.code(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
 
 def display_data(list_li):
