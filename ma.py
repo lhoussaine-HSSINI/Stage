@@ -129,12 +129,12 @@ def stocke_data(list_li):
         list_company_name.append(company_name)
         link_job =list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")
         list_link_job.append(link_job)
-        list_discription.append(link_job)
         result = requests.get(link_job)
         page_source = result.content
         soup_product_detaile = BeautifulSoup(page_source, "lxml")
-        # span_category = soup_product_detaile.find('div', {"id": "posted_in"})
-        # st.code(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
+        job_description = soup_product_detaile.find('div', {"id": "jobDescriptionText"}).text
+        list_discription.append(job_description)
+        st.code(job_description)
 
 def display_data(list_li):
     for i in range(len(list_li)):
