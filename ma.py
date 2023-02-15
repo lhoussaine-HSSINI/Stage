@@ -132,9 +132,9 @@ def stocke_data(list_li):
         result = requests.get(link_job)
         page_source = result.content
         soup_product_detaile = BeautifulSoup(page_source, "lxml")
-        job_description = soup_product_detaile.find('div', {"id": "jobDescriptionText"}).text
-        list_discription.append(job_description)
-        st.code(job_description)
+        # job_description = soup_product_detaile.find('div', {"id": "jobDescriptionText"}).text
+        # list_discription.append(job_description)
+        st.code(soup_product_detaile)
 
 def display_data(list_li):
     for i in range(len(list_li)):
