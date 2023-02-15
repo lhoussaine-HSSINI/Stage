@@ -229,6 +229,7 @@ if selected == "Apprenante A2":
             driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter - 1}0")
             list_li = driver.find_elements(by=By.CSS_SELECTOR,
                                              value="div[class='slider_container css-g7s71f eu4oa1w0']")
+            print(i_counter)
             i_counter += 1
         break
     display_data(list_li)
