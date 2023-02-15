@@ -222,7 +222,7 @@ if selected == "Apprenante A2":
     list_=[]
 
     display_data(list_li)
-
+    counttt=len(list_li)
     i_counter = 1
     while True:
         if i_counter < page_total_of_search:
@@ -234,6 +234,7 @@ if selected == "Apprenante A2":
         else:
             break
     display_data(list_li)
+    display_data(len(list_li)+counttt)
 
 
 
