@@ -118,7 +118,9 @@ def load_lottieurl(url: str):
 def stocke_data(list_li):
     global list_discription,list_title_jobs,list_company_location,list_company_name,list_link_job
     for i in range(len(list_li)):
-        list_title_jobs.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
+        title=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text
+        st.code(title)
+        # list_title_jobs.append()
         list_company_location.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text)
         list_company_name.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text)
         list_link_job.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
