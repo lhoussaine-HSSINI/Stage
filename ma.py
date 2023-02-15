@@ -234,7 +234,7 @@ if selected == "Apprenante A2":
         else:
             break
     display_data(list_li)
-    display_data(len(list_li)+counttt)
+    st.markdown(len(list_li)+counttt)
 
 
 
