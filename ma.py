@@ -119,21 +119,21 @@ def stocke_data(list_li):
     global list_discription,list_title_jobs,list_company_location,list_company_name,list_link_job
     for i in range(len(list_li)):
         title=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text
-        st.code(title)
         list_title_jobs.append(title)
         comany_location=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text
-        st.code(comany_location)
         list_company_location.append(comany_location)
         try:
             company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
         except:
             company_name=None
-        st.code(company_name)
         list_company_name.append(company_name)
         link_job =list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")
-        st.code(link_job)
         list_link_job.append(link_job)
         list_discription.append(link_job)
+        result = requests.get(link_job)
+        page_source = result.content
+        soup_product_detaile = BeautifulSoup(page_source, "lxml")
+        # span_category = soup_product_detaile.find('div', {"id": "posted_in"})
         # st.code(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
 
 def display_data(list_li):
