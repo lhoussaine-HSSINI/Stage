@@ -124,7 +124,10 @@ def stocke_data(list_li):
         comany_location=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text
         st.code(comany_location)
         list_company_location.append(comany_location)
-        company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
+        try:
+            company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
+        except:
+            company_name=None
         st.code(company_name)
         list_company_name.append(company_name)
         link_job =list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")
