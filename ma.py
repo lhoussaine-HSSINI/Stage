@@ -186,17 +186,6 @@ if selected == "Apprenante A2":
     list_name=[]
     list_image=[]
     list_nom=[]
-    i_counter=2
-
-    while True:
-        if i_counter <= page_total_of_search:
-            driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter-1}0")
-            list_li_1 = driver.find_elements(by=By.CSS_SELECTOR,value="div[class='slider_container css-g7s71f eu4oa1w0']")
-            st.code(len(list_li_1))
-            st.code(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter-1}0")
-            i_counter += 1
-        break
-
 
     for i in range(len(list_li)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
@@ -231,6 +220,17 @@ if selected == "Apprenante A2":
                             </a>
                             """, unsafe_allow_html=True)
 
+    i_counter = 2
+
+    while True:
+        if i_counter <= page_total_of_search:
+            driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter - 1}0")
+            list_li_1 = driver.find_elements(by=By.CSS_SELECTOR,
+                                             value="div[class='slider_container css-g7s71f eu4oa1w0']")
+            st.code(len(list_li_1))
+            st.code(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter - 1}0")
+            i_counter += 1
+        break
 if selected == "Apprenante A1":
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
     Categorie_add_1 = st.multiselect('competence',
