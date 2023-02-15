@@ -180,7 +180,7 @@ if selected == "Apprenante A2":
     # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
     page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
     page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
-    list_li=driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
+    list_li=[]
     st.markdown(page_total)
     st.markdown(page_total_of_search)
     list_title_jobs=[]
@@ -188,16 +188,20 @@ if selected == "Apprenante A2":
     list_company_name=[]
     list_=[]
 
-    i_counter = 2
+    i_counter = 1
 
     while True:
         if i_counter <= page_total_of_search:
-            driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter - 1}0")
-            list_li_1 = driver.find_elements(by=By.CSS_SELECTOR,
-                                             value="div[class='slider_container css-g7s71f eu4oa1w0']")
-            st.code(len(list_li_1))
-            st.code(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter - 1}0")
-            i_counter += 1
+            if i_counter==1 :
+                list_li.append(driver.find_elements(by=By.CSS_SELECTOR,value="div[class='slider_container css-g7s71f eu4oa1w0']"))
+                i_counter += 1
+            else:
+                driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter - 1}0")
+
+                list_li.append(driver.find_elements(by=By.CSS_SELECTOR,value="div[class='slider_container css-g7s71f eu4oa1w0']"))
+                st.code(len(list_li_1))
+                st.code(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter - 1}0")
+                i_counter += 1
         break
 
     for i in range(len(list_li)):
