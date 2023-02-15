@@ -236,7 +236,7 @@ if selected == "Apprenante A2":
     st.markdown(page_total_of_search)
 
     display_data(list_li)
-    stocke_data(list_li)
+    # stocke_data(list_li)
     counttt=len(list_li)
     i_counter = 1
     while True:
@@ -247,7 +247,7 @@ if selected == "Apprenante A2":
             counttt+=len(list_li)
             # st.markdown(i_counter)
             display_data(list_li)
-            stocke_data(list_li)
+            # stocke_data(list_li)
             i_counter += 1
         else:
             break
