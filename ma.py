@@ -195,7 +195,7 @@ if selected == "Apprenante A2":
                     <a href="{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")}" class="my-2 card p-4 bg-white border rounded-lg">
                       <div class="d-flex align-items-center">
                           <div class="mx-1 ">
-                              <img src="https://www.svgrepo.com/svg/465351/job" alt="aa" width="65" class="rounded-3">  
+                              <img src="https://icons8.com/icon/hTSEchcGkuHS/jobs" alt="aa" width="65" class="rounded-3">  
                           </div>
                           <div class="mx-1">
                               <div class="font-weight-bold leading-tight font-display">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text}</div>
