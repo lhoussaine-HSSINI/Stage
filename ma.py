@@ -195,7 +195,7 @@ if selected == "Apprenante A2":
                     <a href="{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")}" class="my-2 card p-4 bg-white border rounded-lg">
                       <div class="d-flex align-items-center">
                           <div class="mx-1 ">
-                              # <img src="{st_lottie(lottie_download, speed=1, reverse=False, loop=True,quality="low", height=None, width=None, key=i)}" alt="aa" width="65" class="rounded-3">   
+                          {st_lottie(lottie_download, speed=1, reverse=False, loop=True,quality="low", height=None, width=65, key=i)}
                           </div>
                           <div class="mx-1">
                               <div class="font-weight-bold leading-tight font-display">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text}</div>
