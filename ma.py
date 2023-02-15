@@ -124,7 +124,7 @@ def stocke_data(list_li):
         # list_link_job.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
         #
         driver_job=get_driver()
-        driver_job.get(list_link_job[i])
+        driver_job.get(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
         list_discription.append(driver_job.find_element(by=By.ID, value="jobDescriptionText"))
 
 def display_data(list_li):
