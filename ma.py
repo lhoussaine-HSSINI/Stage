@@ -225,15 +225,15 @@ if selected == "Apprenante A2":
 
     i_counter = 1
     while True:
-        if i_counter <= page_total_of_search:
+        if i_counter < page_total_of_search:
             driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
             list_li = driver.find_elements(by=By.CSS_SELECTOR,
                                              value="div[class='slider_container css-g7s71f eu4oa1w0']")
-            st.markdown(i_counter)
+            # st.markdown(i_counter)
             i_counter += 1
         else:
             break
-    # display_data(list_li)
+    display_data(list_li)
 
 
 
