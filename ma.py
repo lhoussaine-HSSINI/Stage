@@ -117,14 +117,15 @@ def load_lottieurl(url: str):
 
 def stocke_data(list_li):
     for i in range(len(list_li)):
-        list_title_jobs.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
-        list_company_location.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text)
-        list_company_name.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text)
-        list_link_job.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
-
-        driver_job=get_driver()
-        driver_job.get(list_link_job[i])
-        list_discription.append(driver_job.find_element(by=By.ID, value="jobDescriptionText"))
+        # list_title_jobs.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
+        # list_company_location.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text)
+        # list_company_name.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text)
+        # list_link_job.append(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href"))
+        #
+        # driver_job=get_driver()
+        # driver_job.get(list_link_job[i])
+        # list_discription.append(driver_job.find_element(by=By.ID, value="jobDescriptionText"))
+        print(i)
 
 def display_data(list_li):
     for i in range(len(list_li)):
@@ -236,7 +237,7 @@ if selected == "Apprenante A2":
     st.markdown(page_total_of_search)
 
     display_data(list_li)
-    # stocke_data(list_li)
+    stocke_data(list_li)
     counttt=len(list_li)
     i_counter = 1
     while True:
