@@ -88,8 +88,7 @@ st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootst
             'integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" '
             'crossorigin="anonymous">',
             unsafe_allow_html=True)
-st.markdown('<script src="https://kit.fontawesome.com/e9308f68a0.js" crossorigin="anonymous"></script>',
-            unsafe_allow_html=True)
+
 st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"'
             ' integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"'
             ' crossorigin="anonymous"></script>', unsafe_allow_html=True)
@@ -198,6 +197,7 @@ if selected == "Apprenante A2":
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
         try:
             st.markdown(f"""
+                    <script src="https://kit.fontawesome.com/e9308f68a0.js" crossorigin="anonymous"></script>
                     <a href="{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")}" class="my-2 card p-4 bg-white border rounded-lg">
                       <div class="d-flex align-items-center">
                           <div class="mx-1 ">
