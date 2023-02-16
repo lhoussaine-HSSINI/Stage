@@ -200,10 +200,7 @@ with st.sidebar:
                             )
 
 if selected =="Home":
-    st.write(st.session_state['counter'])
-
     st.markdown(""" <h1 class='text-center fs-1 headdd'> Bienvenue au FAHO WORK </h1> """,  unsafe_allow_html=True)
-
     c1, c2 = st.columns(2)
     with c1:
         st.markdown(""" <p class='text-center mb-3' style='margin-top: -100px !important;' >  
