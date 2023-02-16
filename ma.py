@@ -60,8 +60,10 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+global  driver_1
 @st.cache_resource
 def get_driver():
+    global driver_1
     driver_1 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     wait = WebDriverWait(driver_1, 20)
     action = ActionChains(driver_1)
@@ -227,7 +229,7 @@ if selected == "Apprenante A1":
                                       'JAVA', 'Python',
                                       'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
                                       'Spécial Femme'])
-    driver = get_driver()
+    driver = driver_1
     # driver.get("https://ma.indeed.com")
     # time.sleep(5)
     driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
