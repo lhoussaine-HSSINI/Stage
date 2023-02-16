@@ -30,7 +30,7 @@ list_discription=[]
 list_link_job=[]
 
 def main():
-
+    global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
     hide_streamlit_style = """
                 <style>
                 #MainMenu {visibility: hidden;}
