@@ -145,32 +145,40 @@ def display_data():
             </a>
             """, unsafe_allow_html=True)
 
-    if st.session_state['counter'] == 0:
-        st.session_state['counter'] += 1
-        driver = get_driver()
-        # driver.get("https://ma.indeed.com")
-        # time.sleep(5)
-        driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
-        # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
-        page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
-        page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
-        list_li = driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
-        # st.markdown(page_total)
-        # st.markdown(page_total_of_search)
-        stocke_data(list_li)
-        counttt = len(list_li)
-        i_counter = 1
-        while True:
-            if i_counter < page_total_of_search:
-                driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
-                list_li = driver.find_elements(by=By.CSS_SELECTOR,
-                                               value="div[class='slider_container css-g7s71f eu4oa1w0']")
-                counttt += len(list_li)
-                # st.markdown(i_counter)
-                stocke_data(list_li)
-                i_counter += 1
-            else:
-                break
+if st.session_state['counter'] == 0:
+    st.session_state['counter'] += 1
+    driver = get_driver()
+    # driver.get("https://ma.indeed.com")
+    # time.sleep(5)
+    driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+    # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
+    page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
+    page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
+    list_li = driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
+    # st.markdown(page_total)
+    # st.markdown(page_total_of_search)
+    stocke_data(list_li)
+    counttt = len(list_li)
+    i_counter = 1
+    while True:
+        if i_counter < page_total_of_search:
+            driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
+            list_li = driver.find_elements(by=By.CSS_SELECTOR,
+                                           value="div[class='slider_container css-g7s71f eu4oa1w0']")
+            counttt += len(list_li)
+            # st.markdown(i_counter)
+            stocke_data(list_li)
+            i_counter += 1
+        else:
+            break
+    for ii in range(len(list_link_job)):
+        driver.get(list_link_job[ii])
+        try:
+            time.sleep(2)
+            list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
+            list_discription.append(list_linkk.text)
+        except:
+            list_discription.append("none")
 
 lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
 lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.json"
@@ -228,11 +236,3 @@ st.markdown("""
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 """, unsafe_allow_html=True)
 
-for ii in range(len(list_link_job)):
-    driver.get(list_link_job[ii])
-    try:
-        time.sleep(2)
-        list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
-        list_discription.append(list_linkk.text)
-    except:
-        list_discription.append("none")
