@@ -238,8 +238,6 @@ if selected == "Apprenante A2":
     list_li=driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
     st.markdown(page_total)
     st.markdown(page_total_of_search)
-
-    display_data(list_li)
     stocke_data(list_li)
     counttt=len(list_li)
     i_counter = 1
@@ -250,12 +248,11 @@ if selected == "Apprenante A2":
                                              value="div[class='slider_container css-g7s71f eu4oa1w0']")
             counttt+=len(list_li)
             # st.markdown(i_counter)
-            display_data(list_li)
             stocke_data(list_li)
             i_counter += 1
         else:
             break
-
+    display_data()
     st.markdown(counttt)
     for  ii in range(len(list_link_job)):
         driver.get(list_link_job[ii])
