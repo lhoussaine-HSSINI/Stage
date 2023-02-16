@@ -251,7 +251,7 @@ if selected == "Apprenante A2":
     st.markdown(page_total_of_search)
 
     display_data(list_li)
-    stocke_data(list_li, driver)
+    stocke_data(list_li)
     counttt=len(list_li)
     i_counter = 1
     while True:
