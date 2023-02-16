@@ -129,7 +129,7 @@ def main():
             list_link_job.append(link_job)
 
     def display_data():
-        # global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
+        global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
         for i in range(len(list_title_jobs)):
             st.markdown(f"""
                     <a href="{list_link_job[i]}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
@@ -236,7 +236,7 @@ def main():
                     i_counter += 1
                 else:
                     break
-
+            display_data()
             for ii in range(len(list_link_job)):
                 driver.get(list_link_job[ii])
                 try:
@@ -254,7 +254,6 @@ def main():
                                           'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
                                           'Spécial Femme'])
 
-        st.code(list_title_jobs)
         display_data()
     st.markdown("""
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
