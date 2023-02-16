@@ -178,7 +178,7 @@ def kolchi():
             soup=BeautifulSoup(driver.page_source, "lxml")
             list_linkk = soup.find("div", {"id":"jobDescriptionText"}).text
             # st.markdown()
-            list_discription.append(list_linkk.text)
+            list_discription.append(list_linkk)
         except:
             list_discription.append("none")
     display_data()
