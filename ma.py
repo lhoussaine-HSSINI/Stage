@@ -246,9 +246,16 @@ if selected == "Apprenante A2":
                 i_counter += 1
             else:
                 break
-    st.markdown("hahya")
     display_data()
-    st.markdown("display_data")
+    for ii in range(len(list_link_job)):
+        driver.get(list_link_job[ii])
+        try:
+            time.sleep(2)
+            list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
+            list_discription.append(list_linkk.text)
+        except:
+            list_discription.append("none")
+    driver.close()
 
 if selected == "Apprenante A1":
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
@@ -259,16 +266,6 @@ if selected == "Apprenante A1":
                                       'Spécial Femme'])
 
     display_data()
-
-for ii in range(len(list_link_job)):
-    driver.get(list_link_job[ii])
-    try:
-        time.sleep(2)
-        list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
-        list_discription.append(list_linkk.text)
-    except:
-        list_discription.append("none")
-driver.close()
 st.markdown("""
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
