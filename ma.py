@@ -115,7 +115,7 @@ def load_lottieurl(url: str):
         return None
     return r.json()
 
-def stocke_data(list_li):
+def stocke_data(list_li, ma_driver):
     global list_discription,list_title_jobs,list_company_location,list_company_name,list_link_job
     for i in range(len(list_li)):
         title=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text
@@ -136,8 +136,8 @@ def stocke_data(list_li):
         # # soup_product_detaile = BeautifulSoup(page_source, "lxml")
         # # job_description = soup_product_detaile.find('div', {"id": "jobDescriptionText"}).text
         # # list_discription.append(job_description)
-        # driver_job.get(link_job)
-        # st.code(driver_job.page_source)
+        ma_driver.get(link_job)
+        st.code(ma_driver.page_source)
         # driver_job.close()
 
 def display_data(list_li):
@@ -248,25 +248,21 @@ if selected == "Apprenante A2":
     list_li=driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
     st.markdown(page_total)
     st.markdown(page_total_of_search)
-    driver.close()
+
     display_data(list_li)
-    stocke_data(list_li)
+    stocke_data(list_li, driver)
     counttt=len(list_li)
     i_counter = 1
     while True:
-        driver = get_driver()
         if i_counter < page_total_of_search:
-
             driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
             list_li = driver.find_elements(by=By.CSS_SELECTOR,
                                              value="div[class='slider_container css-g7s71f eu4oa1w0']")
             counttt+=len(list_li)
             # st.markdown(i_counter)
             display_data(list_li)
-            driver.close()
-            stocke_data(list_li)
+            stocke_data(list_li, driver)
             i_counter += 1
-
         else:
             break
 
