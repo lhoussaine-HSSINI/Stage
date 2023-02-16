@@ -211,7 +211,7 @@ if selected == "Apprenante A2":
     #           </div>
     #     </a>
     #     """, unsafe_allow_html=True)
-    if len(list_title_jobs):
+    if len(list_title_jobs)==0:
         driver = get_driver()
         # driver.get("https://ma.indeed.com")
         # time.sleep(5)
