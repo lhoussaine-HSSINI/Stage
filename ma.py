@@ -29,130 +29,130 @@ list_company_name=[]
 list_discription=[]
 list_link_job=[]
 
+
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            .viewerBadge_container__1QSob{display: none !important;}
+            a {display: none;}
+            .leading-tight {
+            line-height: 1.25;
+        }
+        .text-muted {
+            --tw-text-opacity: 1;
+            color: #6b7280;
+            color: rgb(107 114 128/var(--tw-text-opacity));
+        }
+        .font-medium {
+            font-weight: 500;
+        }
+        .text-sm {
+            font-size: .875rem;
+            line-height: 1.25rem;
+        }
+        .font-display {
+            font-family: Outfit,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+        }
+        a, a:hover{
+            text-decoration: none;
+        }
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+@st.cache_resource
+def get_driver():
+    driver_1 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    wait = WebDriverWait(driver_1, 20)
+    action = ActionChains(driver_1)
+    return driver_1
+
+options = Options()
+options.add_argument('--disable-gpu')
+options.add_argument('--headless')
+options.add_argument("--test-type")
+options.add_argument('--log-level=3')
+options.add_argument("--start-maximized")
+options.add_argument("--disable-web-security")
+options.add_argument("--allow-running-insecure-content")
+options.add_argument("--mute-audio")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--disable-features=NetworkService")
+options.add_argument("--window-size=1920x1080")
+options.add_argument("--disable-features=VizDisplayCompositor")
+
+options.add_argument("--start-maximized")
+options.add_argument('--disable-blink-features=AutomationControlled')
+user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.517 Safari/537.36'
+options.add_argument('user-agent={0}'.format(user_agent))
+
+
+
+st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" '
+            'integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" '
+            'crossorigin="anonymous">',
+            unsafe_allow_html=True)
+st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"'
+            ' integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"'
+            ' crossorigin="anonymous"></script>', unsafe_allow_html=True)
+
+styl = f"""
+    <style>
+        .headdd{{
+                    margin-top: -100px !important;
+        }}
+        
+    </style>
+    """
+st.markdown(styl, unsafe_allow_html=True)
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+def stocke_data(list_li):
+    global list_discription,list_title_jobs,list_company_location,list_company_name,list_link_job
+    for i in range(len(list_li)):
+        title=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text
+        list_title_jobs.append(title)
+        comany_location=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text
+        list_company_location.append(comany_location)
+        try:
+            company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
+        except:
+            company_name=None
+        list_company_name.append(company_name)
+        link_job =list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")
+        list_link_job.append(link_job)
+
+def display_data():
+    global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
+    for i in range(len(list_title_jobs)):
+        st.markdown(f"""
+                <a href="{list_link_job[i]}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
+                  <div class="d-flex align-items-center">
+                      <div class="mx-1 ">
+                          <img src="https://raw.githubusercontent.com/lhoussaine-HSSINI/Stage/8935dbf0ed54c4ea517deecd02ba8e981de7e0bb/job-seeker.png" alt="aa" width="65" class="rounded-3">  
+                      </div>
+                      <div class="mx-1">
+                          <div class="font-weight-bold leading-tight font-display">{list_title_jobs[i]}</div>
+                          <div class="text-muted font-medium text-sm my-1">{list_company_name[i]}</div>
+                          <div class="text-muted font-medium text-sm">{list_company_location[i]}</div>
+                      </div>
+                  </div>
+            </a>
+            """, unsafe_allow_html=True)
+
+
+lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
+lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.json"
+lottie_hello = load_lottieurl(lottie_url_hello)
+lottie_download = load_lottieurl(lottie_url_download)
+
 def main():
     global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
-    hide_streamlit_style = """
-                <style>
-                #MainMenu {visibility: hidden;}
-                footer {visibility: hidden;}
-                .viewerBadge_container__1QSob{display: none !important;}
-                a {display: none;}
-                .leading-tight {
-                line-height: 1.25;
-            }
-            .text-muted {
-                --tw-text-opacity: 1;
-                color: #6b7280;
-                color: rgb(107 114 128/var(--tw-text-opacity));
-            }
-            .font-medium {
-                font-weight: 500;
-            }
-            .text-sm {
-                font-size: .875rem;
-                line-height: 1.25rem;
-            }
-            .font-display {
-                font-family: Outfit,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-            }
-            a, a:hover{
-                text-decoration: none;
-            }
-                </style>
-                """
-    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-    @st.cache_resource
-    def get_driver():
-        driver_1 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-        wait = WebDriverWait(driver_1, 20)
-        action = ActionChains(driver_1)
-        return driver_1
-
-    options = Options()
-    options.add_argument('--disable-gpu')
-    options.add_argument('--headless')
-    options.add_argument("--test-type")
-    options.add_argument('--log-level=3')
-    options.add_argument("--start-maximized")
-    options.add_argument("--disable-web-security")
-    options.add_argument("--allow-running-insecure-content")
-    options.add_argument("--mute-audio")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-features=NetworkService")
-    options.add_argument("--window-size=1920x1080")
-    options.add_argument("--disable-features=VizDisplayCompositor")
-
-    options.add_argument("--start-maximized")
-    options.add_argument('--disable-blink-features=AutomationControlled')
-    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.517 Safari/537.36'
-    options.add_argument('user-agent={0}'.format(user_agent))
-
-
-
-    st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" '
-                'integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" '
-                'crossorigin="anonymous">',
-                unsafe_allow_html=True)
-    st.markdown('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"'
-                ' integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"'
-                ' crossorigin="anonymous"></script>', unsafe_allow_html=True)
-
-    styl = f"""
-        <style>
-            .headdd{{
-                        margin-top: -100px !important;
-            }}
-            
-        </style>
-        """
-    st.markdown(styl, unsafe_allow_html=True)
-    def load_lottieurl(url: str):
-        r = requests.get(url)
-        if r.status_code != 200:
-            return None
-        return r.json()
-
-    def stocke_data(list_li):
-        global list_discription,list_title_jobs,list_company_location,list_company_name,list_link_job
-        for i in range(len(list_li)):
-            title=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text
-            list_title_jobs.append(title)
-            comany_location=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text
-            list_company_location.append(comany_location)
-            try:
-                company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
-            except:
-                company_name=None
-            list_company_name.append(company_name)
-            link_job =list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")
-            list_link_job.append(link_job)
-
-    def display_data():
-        global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
-        for i in range(len(list_title_jobs)):
-            st.markdown(f"""
-                    <a href="{list_link_job[i]}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
-                      <div class="d-flex align-items-center">
-                          <div class="mx-1 ">
-                              <img src="https://raw.githubusercontent.com/lhoussaine-HSSINI/Stage/8935dbf0ed54c4ea517deecd02ba8e981de7e0bb/job-seeker.png" alt="aa" width="65" class="rounded-3">  
-                          </div>
-                          <div class="mx-1">
-                              <div class="font-weight-bold leading-tight font-display">{list_title_jobs[i]}</div>
-                              <div class="text-muted font-medium text-sm my-1">{list_company_name[i]}</div>
-                              <div class="text-muted font-medium text-sm">{list_company_location[i]}</div>
-                          </div>
-                      </div>
-                </a>
-                """, unsafe_allow_html=True)
-
-
-    lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
-    lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.json"
-    lottie_hello = load_lottieurl(lottie_url_hello)
-    lottie_download = load_lottieurl(lottie_url_download)
-
-
     with st.sidebar:
         selected = option_menu(None, ["Home","Apprenante A2", "Apprenante A1"],
                                 icons=['house', 'person-workspace', 'person-workspace'], default_index=0,
