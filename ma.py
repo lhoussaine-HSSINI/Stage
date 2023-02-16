@@ -140,7 +140,7 @@ def stocke_data(list_li):
         # driver_job.get(link_job)
         # st.code(driver_job.page_source)
         # driver_job.close()
-
+    st.markdown(list_link_job)
 def display_data(list_li):
     for i in range(len(list_li)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
