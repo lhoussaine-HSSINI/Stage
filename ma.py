@@ -130,39 +130,39 @@ def stocke_data(list_li):
         link_job =list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")
         list_link_job.append(link_job)
 
-def display_data(list_li):
-    for i in range(len(list_li)):
+def display_data():
+    for i in range(len(list_title_jobs)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
-        try:
-            st.markdown(f"""
-                    <a href="{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
-                      <div class="d-flex align-items-center">
-                          <div class="mx-1 ">
-                              <img src="https://raw.githubusercontent.com/lhoussaine-HSSINI/Stage/8935dbf0ed54c4ea517deecd02ba8e981de7e0bb/job-seeker.png" alt="aa" width="65" class="rounded-3">  
-                          </div>
-                          <div class="mx-1">
-                              <div class="font-weight-bold leading-tight font-display">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text}</div>
-                              <div class="text-muted font-medium text-sm my-1">{list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text}</div>
-                              <div class="text-muted font-medium text-sm">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text}</div>
-                          </div>
+        # try:
+        st.markdown(f"""
+                <a href="{list_link_job[i]}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
+                  <div class="d-flex align-items-center">
+                      <div class="mx-1 ">
+                          <img src="https://raw.githubusercontent.com/lhoussaine-HSSINI/Stage/8935dbf0ed54c4ea517deecd02ba8e981de7e0bb/job-seeker.png" alt="aa" width="65" class="rounded-3">  
                       </div>
-                </a>
-                """, unsafe_allow_html=True)
-        except:
-            st.markdown(f"""
-                                <a href="{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
-                                  <div class="d-flex align-items-center">
-                                      <div class="mx-1 ">
-                                          <img src="https://raw.githubusercontent.com/lhoussaine-HSSINI/Stage/8935dbf0ed54c4ea517deecd02ba8e981de7e0bb/job-seeker.png" alt="aa" width="65" class="rounded-3">
-                                      </div>
-                                      <div class="mx-1">
-                                          <div class="font-weight-bold leading-tight font-display">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text}</div>
-                                          <div class="text-muted font-medium text-sm my-1">None</div>
-                                          <div class="text-muted font-medium text-sm">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text}</div>
-                                      </div>
-                                  </div>
-                            </a>
-                            """, unsafe_allow_html=True)
+                      <div class="mx-1">
+                          <div class="font-weight-bold leading-tight font-display">{list_title_jobs[i]}</div>
+                          <div class="text-muted font-medium text-sm my-1">{list_company_name[i]}</div>
+                          <div class="text-muted font-medium text-sm">{list_company_location[i]}</div>
+                      </div>
+                  </div>
+            </a>
+            """, unsafe_allow_html=True)
+        # except:
+        #     st.markdown(f"""
+        #                   <a href="{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
+        #                           <div class="d-flex align-items-center">
+        #                               <div class="mx-1 ">
+        #                                   <img src="https://raw.githubusercontent.com/lhoussaine-HSSINI/Stage/8935dbf0ed54c4ea517deecd02ba8e981de7e0bb/job-seeker.png" alt="aa" width="65" class="rounded-3">
+        #                               </div>
+        #                               <div class="mx-1">
+        #                                   <div class="font-weight-bold leading-tight font-display">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text}</div>
+        #                                   <div class="text-muted font-medium text-sm my-1">None</div>
+        #                                   <div class="text-muted font-medium text-sm">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text}</div>
+        #                               </div>
+        #                           </div>
+        #                     </a>
+        #                     """, unsafe_allow_html=True)
 
 lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
 lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.json"
