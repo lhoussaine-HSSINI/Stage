@@ -248,21 +248,25 @@ if selected == "Apprenante A2":
     list_li=driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
     st.markdown(page_total)
     st.markdown(page_total_of_search)
-
+    driver.close()
     display_data(list_li)
     stocke_data(list_li)
     counttt=len(list_li)
     i_counter = 1
     while True:
+        driver = get_driver()
         if i_counter < page_total_of_search:
+
             driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
             list_li = driver.find_elements(by=By.CSS_SELECTOR,
                                              value="div[class='slider_container css-g7s71f eu4oa1w0']")
             counttt+=len(list_li)
             # st.markdown(i_counter)
             display_data(list_li)
+            driver.close()
             stocke_data(list_li)
             i_counter += 1
+
         else:
             break
 
