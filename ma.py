@@ -269,7 +269,8 @@ if selected == "Apprenante A2":
 
     st.markdown(counttt)
     for  ii in range(len(list_link_job)):
-        st.code(list_link_job[ii])
+        driver.get(list_link_job[ii])
+
 
 
 if selected == "Apprenante A1":
