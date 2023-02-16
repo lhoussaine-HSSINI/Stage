@@ -145,121 +145,94 @@ def display_data():
             </a>
             """, unsafe_allow_html=True)
 
+    if st.session_state['counter'] == 0:
+        st.session_state['counter'] += 1
+        driver = get_driver()
+        # driver.get("https://ma.indeed.com")
+        # time.sleep(5)
+        driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+        # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
+        page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
+        page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
+        list_li = driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
+        # st.markdown(page_total)
+        # st.markdown(page_total_of_search)
+        stocke_data(list_li)
+        counttt = len(list_li)
+        i_counter = 1
+        while True:
+            if i_counter < page_total_of_search:
+                driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
+                list_li = driver.find_elements(by=By.CSS_SELECTOR,
+                                               value="div[class='slider_container css-g7s71f eu4oa1w0']")
+                counttt += len(list_li)
+                # st.markdown(i_counter)
+                stocke_data(list_li)
+                i_counter += 1
+            else:
+                break
 
 lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
 lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.json"
 lottie_hello = load_lottieurl(lottie_url_hello)
 lottie_download = load_lottieurl(lottie_url_download)
 
-def main():
-    global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
-    with st.sidebar:
-        selected = option_menu(None, ["Home","Apprenante A2", "Apprenante A1"],
-                                icons=['house', 'person-workspace', 'person-workspace'], default_index=0,
-                                styles={
-                                    "container": {"padding": "0!important", "background-color": "#fafafa"},
-                                    "nav-link": {"font-size": "14px!important", "text-align": "center", "margin": "0px",
-                                                 "--hover-color": "#eee"},
-                                    "nav-link-selected": {"background-color": "green", "font-size": "16px!important"},
-                                }
-                                )
 
-    if selected =="Home":
-        st.write(st.session_state['counter'])
+with st.sidebar:
+    selected = option_menu(None, ["Home","Apprenante A2", "Apprenante A1"],
+                            icons=['house', 'person-workspace', 'person-workspace'], default_index=0,
+                            styles={
+                                "container": {"padding": "0!important", "background-color": "#fafafa"},
+                                "nav-link": {"font-size": "14px!important", "text-align": "center", "margin": "0px",
+                                             "--hover-color": "#eee"},
+                                "nav-link-selected": {"background-color": "green", "font-size": "16px!important"},
+                            }
+                            )
 
-        st.markdown(""" <h1 class='text-center fs-1 headdd'> Bienvenue au FAHO WORK </h1> """,  unsafe_allow_html=True)
+if selected =="Home":
+    st.write(st.session_state['counter'])
 
-        c1, c2 = st.columns(2)
-        with c1:
-            st.markdown(""" <p class='text-center mb-3' style='margin-top: -100px !important;' >  
-                 vous pouvez cherchez votre  stage  ou stage pre-embauche dans la platforme</p> """,
-                        unsafe_allow_html=True)
-        with c2:
-            st_lottie(lottie_download, speed=1, reverse=False, loop=True,
-                      quality="low", height=None, width=None, key=None)
-    if selected == "Apprenante A2":
+    st.markdown(""" <h1 class='text-center fs-1 headdd'> Bienvenue au FAHO WORK </h1> """,  unsafe_allow_html=True)
 
-        st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage pre-embauche</h1> """, unsafe_allow_html=True)
-        Categorie_add_1 = st.multiselect('competence',
-                                         ['Html', 'Css', 'Java script', 'Php',
-                                          'JAVA', 'Python',
-                                          'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
-                                          'Spécial Femme'])
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown(""" <p class='text-center mb-3' style='margin-top: -100px !important;' >  
+             vous pouvez cherchez votre  stage  ou stage pre-embauche dans la platforme</p> """,
+                    unsafe_allow_html=True)
+    with c2:
+        st_lottie(lottie_download, speed=1, reverse=False, loop=True,
+                  quality="low", height=None, width=None, key=None)
+if selected == "Apprenante A2":
+
+    st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage pre-embauche</h1> """, unsafe_allow_html=True)
+    Categorie_add_1 = st.multiselect('competence',
+                                     ['Html', 'Css', 'Java script', 'Php',
+                                      'JAVA', 'Python',
+                                      'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
+                                      'Spécial Femme'])
 
 
-        # c_1 ,c_2=st.columns(2)
-        # with c_1:
-        #     hasClicked_1 = card(key=1,
-        #         title="Hello World!",
-        #         text="Some description",
-        #         image="http://placekitten.com/200/300",
-        #         url="https://github.com/gamcoh/st-card"
-        #     )
-        # with c_2:
-        # st.markdown("""
-        #         <a href="" class="card p-4 bg-white border rounded-lg">
-        #           <div class="d-flex align-items-center">
-        #               <div class="mx-1 ">
-        #                   <img src="https://app.vuejobs.com/storage/1740/d40371ca-c586-4a9a-b5e9-4f6bc21d7e37.com" alt="aa" width="65" class="rounded-3">
-        #               </div>
-        #               <div class="mx-1">
-        #                   <div class="font-weight-bold leading-tight font-display">hello hhhhhhh hhshs</div>
-        #                   <div class="text-muted font-medium text-sm my-1">kjcj vkec dcjecc cbbc cuoc uc</div>
-        #                   <div class="text-muted font-medium text-sm">Casablanca</div>
-        #               </div>
-        #           </div>
-        #     </a>
-        #     """, unsafe_allow_html=True)
-        if st.session_state['counter'] == 0:
-            st.session_state['counter'] += 1
-            driver = get_driver()
-            # driver.get("https://ma.indeed.com")
-            # time.sleep(5)
-            driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
-            # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
-            page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
-            page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
-            list_li = driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
-            # st.markdown(page_total)
-            # st.markdown(page_total_of_search)
-            stocke_data(list_li)
-            counttt = len(list_li)
-            i_counter = 1
-            while True:
-                if i_counter < page_total_of_search:
-                    driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
-                    list_li = driver.find_elements(by=By.CSS_SELECTOR,
-                                                   value="div[class='slider_container css-g7s71f eu4oa1w0']")
-                    counttt += len(list_li)
-                    # st.markdown(i_counter)
-                    stocke_data(list_li)
-                    i_counter += 1
-                else:
-                    break
-            display_data()
-            for ii in range(len(list_link_job)):
-                driver.get(list_link_job[ii])
-                try:
-                    time.sleep(2)
-                    list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
-                    list_discription.append(list_linkk.text)
-                except:
-                    list_discription.append("none")
-        display_data()
-    if selected == "Apprenante A1":
-        st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
-        Categorie_add_1 = st.multiselect('competence',
-                                         ['Html', 'Css', 'Java script', 'Php',
-                                          'JAVA', 'Python',
-                                          'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
-                                          'Spécial Femme'])
+    display_data()
+if selected == "Apprenante A1":
+    st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
+    Categorie_add_1 = st.multiselect('competence',
+                                     ['Html', 'Css', 'Java script', 'Php',
+                                      'JAVA', 'Python',
+                                      'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
+                                      'Spécial Femme'])
 
-        display_data()
-    st.markdown("""
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    """, unsafe_allow_html=True)
+    display_data()
+st.markdown("""
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+""", unsafe_allow_html=True)
 
-if __name__ == "__main__":
-    main()
+for ii in range(len(list_link_job)):
+    driver.get(list_link_job[ii])
+    try:
+        time.sleep(2)
+        list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
+        list_discription.append(list_linkk.text)
+    except:
+        list_discription.append("none")
