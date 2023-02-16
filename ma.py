@@ -245,8 +245,9 @@ if selected == "Apprenante A2":
     #           </div>
     #     </a>
     #     """, unsafe_allow_html=True)
+    st.markdown("hahya")
     display_data()
-
+    st.markdown("display_data")
 
 if selected == "Apprenante A1":
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
