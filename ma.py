@@ -245,7 +245,7 @@ def main():
                 list_discription.append(list_linkk.text)
             except:
                 list_discription.append("none")
-        driver.close()
+
     if selected == "Apprenante A1":
         st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
         Categorie_add_1 = st.multiselect('competence',
@@ -254,6 +254,7 @@ def main():
                                           'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
                                           'Spécial Femme'])
 
+        st.code(list_title_jobs)
         display_data()
     st.markdown("""
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
