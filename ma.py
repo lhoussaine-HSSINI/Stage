@@ -175,7 +175,9 @@ def kolchi():
         driver.get(list_link_job[ii])
         try:
             time.sleep(2)
+            soup=BeautifulSoup(driver.page_source, "lxml")
             list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
+            st.markdown(soup.find("div", {"id":"jobDescriptionText"}))
             list_discription.append(list_linkk.text)
         except:
             list_discription.append("none")
