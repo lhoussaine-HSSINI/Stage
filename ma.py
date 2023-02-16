@@ -20,6 +20,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 
+if 'counter' not in st.session_state:
+    st.session_state['counter'] = 0
 
 list_title_jobs=[]
 list_company_location=[]
@@ -166,6 +168,9 @@ with st.sidebar:
                             )
 
 if selected =="Home":
+    st.write(st.session_state['counter'])
+    st.session_state['counter']+= 1
+    st.write(st.session_state['counter'])
     st.markdown(""" <h1 class='text-center fs-1 headdd'> Bienvenue au FAHO WORK </h1> """,  unsafe_allow_html=True)
 
     c1, c2 = st.columns(2)
@@ -180,6 +185,7 @@ if selected =="Home":
 
 
 if selected == "Apprenante A2":
+
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage pre-embauche</h1> """, unsafe_allow_html=True)
     Categorie_add_1 = st.multiselect('competence',
                                      ['Html', 'Css', 'Java script', 'Php',
@@ -237,6 +243,7 @@ if selected == "Apprenante A2":
                 i_counter += 1
             else:
                 break
+
         for ii in range(len(list_link_job)):
             driver.get(list_link_job[ii])
             try:
@@ -245,7 +252,6 @@ if selected == "Apprenante A2":
                 list_discription.append(list_linkk.text)
             except:
                 list_discription.append("none")
-        st.code(len(list_discription))
     display_data()
 
 
