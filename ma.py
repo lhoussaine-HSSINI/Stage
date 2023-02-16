@@ -245,7 +245,7 @@ def main():
                 list_discription.append(list_linkk.text)
             except:
                 list_discription.append("none")
-
+        driver.quit()
     if selected == "Apprenante A1":
         st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
         Categorie_add_1 = st.multiselect('competence',
