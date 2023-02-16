@@ -171,16 +171,16 @@ def kolchi():
             i_counter += 1
         else:
             break
-    # for ii in range(len(list_link_job)):
-    #     driver.get(list_link_job[ii])
-    #     try:
-    #         time.sleep(2)
-    #         list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
-    #         list_discription.append(list_linkk.text)
-    #     except:
-    #         list_discription.append("none")
+    for ii in range(len(list_link_job)):
+        driver.get(list_link_job[ii])
+        try:
+            time.sleep(2)
+            list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
+            list_discription.append(list_linkk.text)
+        except:
+            list_discription.append("none")
     display_data()
-    st.code(list_link_job)
+
 
 lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
 lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.json"
