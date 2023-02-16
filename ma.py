@@ -129,7 +129,7 @@ def stocke_data(list_li):
         list_company_name.append(company_name)
         link_job =list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")
         list_link_job.append(link_job)
-        st.code(link_job)
+        # st.code(link_job)
         # driver_job=get_driver()
         #
         # # result = requests.get(link_job)
@@ -140,7 +140,7 @@ def stocke_data(list_li):
         # driver_job.get(link_job)
         # st.code(driver_job.page_source)
         # driver_job.close()
-    st.markdown(list_link_job)
+
 def display_data(list_li):
     for i in range(len(list_li)):
         # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
@@ -268,7 +268,8 @@ if selected == "Apprenante A2":
             break
 
     st.markdown(counttt)
-
+    for  ii in range(len(list_link_job)):
+        st.code(list_link_job[ii])
 
 
 if selected == "Apprenante A1":
