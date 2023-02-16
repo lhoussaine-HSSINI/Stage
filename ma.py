@@ -270,12 +270,12 @@ if selected == "Apprenante A2":
     st.markdown(counttt)
     for  ii in range(len(list_link_job)):
         driver.get(list_link_job[ii])
-        st.code(list_link_job[ii])
-        time.sleep(3)
-
-        list_linkk = driver.find_element(by=By.ID,value="jobDescriptionText")
-        st.markdown(list_linkk.text)
-
+        try:
+            time.sleep(2)
+            list_linkk = driver.find_element(by=By.ID,value="jobDescriptionText")
+            list_discription.append(list_linkk.text)
+        except:
+            list_discription.append(None)
 
 
 
