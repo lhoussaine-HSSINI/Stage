@@ -209,14 +209,6 @@ if selected =="Home":
             else:
                 break
 
-        for ii in range(len(list_link_job)):
-            driver.get(list_link_job[ii])
-            try:
-                time.sleep(2)
-                list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
-                list_discription.append(list_linkk.text)
-            except:
-                list_discription.append("none")
 
 
 
@@ -253,8 +245,6 @@ if selected == "Apprenante A2":
     #           </div>
     #     </a>
     #     """, unsafe_allow_html=True)
-
-
     display_data()
 
 
@@ -268,10 +258,14 @@ if selected == "Apprenante A1":
 
     display_data()
 
-
-
-
-
+for ii in range(len(list_link_job)):
+    driver.get(list_link_job[ii])
+    try:
+        time.sleep(2)
+        list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
+        list_discription.append(list_linkk.text)
+    except:
+        list_discription.append("none")
 
 st.markdown("""
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
