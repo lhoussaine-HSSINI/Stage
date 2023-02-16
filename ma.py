@@ -132,8 +132,6 @@ def stocke_data(list_li):
 
 def display_data():
     for i in range(len(list_title_jobs)):
-        # st.markdown(list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text)
-        # try:
         st.markdown(f"""
                 <a href="{list_link_job[i]}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
                   <div class="d-flex align-items-center">
@@ -148,21 +146,7 @@ def display_data():
                   </div>
             </a>
             """, unsafe_allow_html=True)
-        # except:
-        #     st.markdown(f"""
-        #                   <a href="{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
-        #                           <div class="d-flex align-items-center">
-        #                               <div class="mx-1 ">
-        #                                   <img src="https://raw.githubusercontent.com/lhoussaine-HSSINI/Stage/8935dbf0ed54c4ea517deecd02ba8e981de7e0bb/job-seeker.png" alt="aa" width="65" class="rounded-3">
-        #                               </div>
-        #                               <div class="mx-1">
-        #                                   <div class="font-weight-bold leading-tight font-display">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text}</div>
-        #                                   <div class="text-muted font-medium text-sm my-1">None</div>
-        #                                   <div class="text-muted font-medium text-sm">{list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text}</div>
-        #                               </div>
-        #                           </div>
-        #                     </a>
-        #                     """, unsafe_allow_html=True)
+
 
 lottie_url_hello = "https://assets5.lottiefiles.com/packages/lf20_V9t630.json"
 lottie_url_download = "https://assets3.lottiefiles.com/packages/lf20_cdhfmdzy.json"
@@ -227,42 +211,42 @@ if selected == "Apprenante A2":
     #           </div>
     #     </a>
     #     """, unsafe_allow_html=True)
-
-    driver = get_driver()
-    # driver.get("https://ma.indeed.com")
-    # time.sleep(5)
-    driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
-    # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
-    page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
-    page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
-    list_li=driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
-    st.markdown(page_total)
-    st.markdown(page_total_of_search)
-    stocke_data(list_li)
-    counttt=len(list_li)
-    i_counter = 1
-    while True:
-        if i_counter < page_total_of_search:
-            driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
-            list_li = driver.find_elements(by=By.CSS_SELECTOR,
-                                             value="div[class='slider_container css-g7s71f eu4oa1w0']")
-            counttt+=len(list_li)
-            # st.markdown(i_counter)
-            stocke_data(list_li)
-            i_counter += 1
-        else:
-            break
+    if len(list_title_jobs):
+        driver = get_driver()
+        # driver.get("https://ma.indeed.com")
+        # time.sleep(5)
+        driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+        # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
+        page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
+        page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
+        list_li=driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
+        st.markdown(page_total)
+        st.markdown(page_total_of_search)
+        stocke_data(list_li)
+        counttt=len(list_li)
+        i_counter = 1
+        while True:
+            if i_counter < page_total_of_search:
+                driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
+                list_li = driver.find_elements(by=By.CSS_SELECTOR,
+                                                 value="div[class='slider_container css-g7s71f eu4oa1w0']")
+                counttt+=len(list_li)
+                # st.markdown(i_counter)
+                stocke_data(list_li)
+                i_counter += 1
+            else:
+                break
+        for ii in range(len(list_link_job)):
+            driver.get(list_link_job[ii])
+            try:
+                time.sleep(2)
+                list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
+                list_discription.append(list_linkk.text)
+            except:
+                list_discription.append("none")
+        st.code(len(list_discription))
     display_data()
-    st.markdown(counttt)
-    for  ii in range(len(list_link_job)):
-        driver.get(list_link_job[ii])
-        try:
-            time.sleep(2)
-            list_linkk = driver.find_element(by=By.ID,value="jobDescriptionText")
-            list_discription.append(list_linkk.text)
-        except:
-            list_discription.append("none")
-    st.code(len(list_discription))
+
 
 if selected == "Apprenante A1":
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
