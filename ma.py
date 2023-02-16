@@ -171,16 +171,16 @@ def kolchi():
             i_counter += 1
         else:
             break
-    for ii in range(len(list_link_job)):
-        driver.get(list_link_job[ii])
-        try:
-            time.sleep(1)
-            # soup=BeautifulSoup(driver.page_source, "lxml")
-            list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
-            # st.markdown(soup.find("div", {"id":"jobDescriptionText"}).)
-            list_discription.append(list_linkk.text)
-        except:
-            list_discription.append("none")
+    # for ii in range(len(list_link_job)):
+    #     driver.get(list_link_job[ii])
+    #     try:
+    #         time.sleep(1)
+    #         # soup=BeautifulSoup(driver.page_source, "lxml")
+    #         list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
+    #         # st.markdown(soup.find("div", {"id":"jobDescriptionText"}).)
+    #         list_discription.append(list_linkk.text)
+    #     except:
+    #         list_discription.append("none")
     display_data()
 
 
