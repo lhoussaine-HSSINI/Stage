@@ -212,7 +212,7 @@ if selected == "Apprenante A2":
     #     </a>
     #     """, unsafe_allow_html=True)
     a=11
-    if aa>0:
+    if a>0:
         driver = get_driver()
         # driver.get("https://ma.indeed.com")
         # time.sleep(5)
