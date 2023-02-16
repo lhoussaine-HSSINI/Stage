@@ -273,7 +273,7 @@ if selected == "Apprenante A2":
         st.code(list_link_job[ii])
         list_linkk = driver.find_element(by=By.ID,value="jobDescriptionText")
 
-        st.markdown(list_linkk)
+        st.markdown(list_linkk.text)
 
 
 
