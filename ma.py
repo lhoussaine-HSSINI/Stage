@@ -133,6 +133,7 @@ def stocke_data(list_li):
         list_link_job.append(link_job)
 
 def display_data():
+    global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
     for i in range(len(list_title_jobs)):
         st.markdown(f"""
                 <a href="{list_link_job[i]}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
@@ -169,6 +170,18 @@ with st.sidebar:
 
 if selected =="Home":
     st.write(st.session_state['counter'])
+
+    st.markdown(""" <h1 class='text-center fs-1 headdd'> Bienvenue au FAHO WORK </h1> """,  unsafe_allow_html=True)
+
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown(""" <p class='text-center mb-3' style='margin-top: -100px !important;' >  
+             vous pouvez cherchez votre  stage  ou stage pre-embauche dans la platforme</p> """,
+                    unsafe_allow_html=True)
+    with c2:
+        st_lottie(lottie_download, speed=1, reverse=False, loop=True,
+                  quality="low", height=None, width=None, key=None)
+
     if st.session_state['counter'] == 0:
         st.session_state['counter']+= 1
         driver = get_driver()
@@ -179,8 +192,8 @@ if selected =="Home":
         page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
         page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
         list_li = driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_container css-g7s71f eu4oa1w0']")
-        st.markdown(page_total)
-        st.markdown(page_total_of_search)
+        # st.markdown(page_total)
+        # st.markdown(page_total_of_search)
         stocke_data(list_li)
         counttt = len(list_li)
         i_counter = 1
@@ -204,17 +217,6 @@ if selected =="Home":
                 list_discription.append(list_linkk.text)
             except:
                 list_discription.append("none")
-
-    st.markdown(""" <h1 class='text-center fs-1 headdd'> Bienvenue au FAHO WORK </h1> """,  unsafe_allow_html=True)
-
-    c1, c2 = st.columns(2)
-    with c1:
-        st.markdown(""" <p class='text-center mb-3' style='margin-top: -100px !important;' >  
-             vous pouvez cherchez votre  stage  ou stage pre-embauche dans la platforme</p> """,
-                    unsafe_allow_html=True)
-    with c2:
-        st_lottie(lottie_download, speed=1, reverse=False, loop=True,
-                  quality="low", height=None, width=None, key=None)
 
 
 
