@@ -129,7 +129,7 @@ def main():
             list_link_job.append(link_job)
 
     def display_data():
-        global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
+        # global list_discription, list_title_jobs, list_company_location, list_company_name, list_link_job
         for i in range(len(list_title_jobs)):
             st.markdown(f"""
                     <a href="{list_link_job[i]}" class="my-2 card p-4 bg-white border rounded-lg stretched-link">
@@ -236,16 +236,16 @@ def main():
                     i_counter += 1
                 else:
                     break
+
+            for ii in range(len(list_link_job)):
+                driver.get(list_link_job[ii])
+                try:
+                    time.sleep(2)
+                    list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
+                    list_discription.append(list_linkk.text)
+                except:
+                    list_discription.append("none")
         display_data()
-        for ii in range(len(list_link_job)):
-            driver.get(list_link_job[ii])
-            try:
-                time.sleep(2)
-                list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
-                list_discription.append(list_linkk.text)
-            except:
-                list_discription.append("none")
-        driver.quit()
     if selected == "Apprenante A1":
         st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
         Categorie_add_1 = st.multiselect('competence',
