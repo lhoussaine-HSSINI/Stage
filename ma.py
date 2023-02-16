@@ -115,7 +115,7 @@ def load_lottieurl(url: str):
         return None
     return r.json()
 
-def stocke_data(list_li, ma_driver):
+def stocke_data(list_li):
     global list_discription,list_title_jobs,list_company_location,list_company_name,list_link_job
     for i in range(len(list_li)):
         title=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text
@@ -129,6 +129,7 @@ def stocke_data(list_li, ma_driver):
         list_company_name.append(company_name)
         link_job =list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(by=By.TAG_NAME, value='a').get_attribute("href")
         list_link_job.append(link_job)
+        st.code(link_job)
         # driver_job=get_driver()
         #
         # # result = requests.get(link_job)
@@ -136,8 +137,8 @@ def stocke_data(list_li, ma_driver):
         # # soup_product_detaile = BeautifulSoup(page_source, "lxml")
         # # job_description = soup_product_detaile.find('div', {"id": "jobDescriptionText"}).text
         # # list_discription.append(job_description)
-        ma_driver.get(link_job)
-        st.code(ma_driver.page_source)
+        # driver_job.get(link_job)
+        # st.code(driver_job.page_source)
         # driver_job.close()
 
 def display_data(list_li):
@@ -261,7 +262,7 @@ if selected == "Apprenante A2":
             counttt+=len(list_li)
             # st.markdown(i_counter)
             display_data(list_li)
-            stocke_data(list_li, driver)
+            stocke_data(list_li)
             i_counter += 1
         else:
             break
