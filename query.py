@@ -15,6 +15,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.service import Service
 
+
+# Create an empty list to store values in session
+if 'list_discription' not in st.session_state:
+    st.session_state['list_discription'] = []
+    st.session_state['list_title_jobs'] = []
+    st.session_state['list_company_location'] = []
+    st.session_state['list_company_name'] = []
+    st.session_state['list_link_job'] = []
+
 def get_pg_source(url:str):
     options = Options()
     options.add_argument('--disable-gpu')
@@ -72,13 +81,6 @@ def get_description():
         st.session_state.list_discription.append(discri)
 
 def gettt():
-    # Create an empty list to store values in session
-    if 'list_discription' not in st.session_state:
-        st.session_state['list_discription'] = []
-        st.session_state['list_title_jobs'] = []
-        st.session_state['list_company_location'] = []
-        st.session_state['list_company_name'] = []
-        st.session_state['list_link_job'] = []
 
     resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     soup = BeautifulSoup(resulta, "lxml")
