@@ -22,7 +22,7 @@ from selenium.webdriver.chrome.service import Service
 def get_pg_source(url:str):
     options = Options()
     options.add_argument('--disable-gpu')
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     options.add_argument("--test-type")
     options.add_argument('--log-level=3')
     options.add_argument("--start-maximized")
