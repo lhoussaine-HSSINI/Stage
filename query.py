@@ -49,7 +49,7 @@ def stocke_data(list_li):
         # link_job = list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(
         #     by=By.TAG_NAME, value='a').get_attribute("href")
         link_job=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
-        st.markdown(link_job)
+        st.markdown("https://ma.indeed.com/"+link_job)
         # st.session_state.list_link_job.append(link_job)
         title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
 
