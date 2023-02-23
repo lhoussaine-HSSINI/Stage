@@ -49,8 +49,7 @@ def gettt():
     resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     soup = BeautifulSoup(resulta, "lxml")
     st.code(soup)
-    page_total = soup.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
-    page_total = soup.find("div", {'class':'jobsearch-JobCountAndSortPane-jobCount'})
+    page_total = soup.find("div", {'class':'jobsearch-JobCountAndSortPane-jobCount'}).text
     if int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) == 15:
         page_total_of_search = 1
     else:
