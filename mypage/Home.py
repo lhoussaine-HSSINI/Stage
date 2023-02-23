@@ -16,8 +16,10 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.service import Service
 
 
-@st.cache_resource
-def get_driver():
+
+
+
+def get_pg_source(url:str):
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument('--headless')
@@ -36,170 +38,67 @@ def get_driver():
     options.add_argument('--disable-blink-features=AutomationControlled')
     user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.517 Safari/537.36'
     options.add_argument('user-agent={0}'.format(user_agent))
-    # driver_1 = webdriver.Chrome(service=ChromeService(executable_path="D:\\chromedriver\\chromedriver.exe"), options=options)
+    #
+    # driver_1 = webdriver.Chrome(service=ChromeService(executable_path="D:\\chromedriver\\chromedriver.exe"),
+    #                             options=options)
     driver_1 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    wait = WebDriverWait(driver_1, 10)
-    action = ActionChains(driver_1)
-    return driver_1
+    driver_1.get(url)
+    pg=driver_1.page_source
+    driver_1.close()
+    driver_1.quit()
+    return pg
 
-
-
-
-# def  get_discription_of_post(link_job):
-#         resultat = requests.get(link_job)
-#         soup=BeautifulSoup(resultat.text, "html5lib")
-#         try:
-#             time.sleep(1)
-#             # soup=BeautifulSoup(driver.page_source, "lxml")
-#             list_linkk = soup.find("", value="jobDescriptionText")
-#             # st.markdown(soup.find("div", {"id":"jobDescriptionText"}).)
-#             st.session_state.list_discription.append(list_linkk.text)
-#         except:
-#             st.session_state.list_discription.append("none")
-
-@st.cache_resource
-def open_page(url: str):
-    options = Options()
-    options.add_argument('--disable-gpu')
-    options.add_argument('--headless')
-    options.add_argument("--test-type")
-    options.add_argument('--log-level=3')
-    options.add_argument("--start-maximized")
-    options.add_argument("--disable-web-security")
-    options.add_argument("--allow-running-insecure-content")
-    options.add_argument("--mute-audio")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-features=NetworkService")
-    options.add_argument("--window-size=1920x1080")
-    options.add_argument("--disable-features=VizDisplayCompositor")
-    options.add_argument("--start-maximized")
-    options.add_argument('--disable-blink-features=AutomationControlled')
-    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.517 Safari/537.36'
-    options.add_argument('user-agent={0}'.format(user_agent))
-    # driver_2 = webdriver.Chrome(service=ChromeService(executable_path="D:\\chromedriver\\chromedriver.exe"), options=options)
-    driver_2 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    driver_2.get(url)
-    # time.sleep(1)
-
-    try:
-        discri = driver_2.find_element(by=By.ID, value="jobDescriptionText").text
-    except:
-        discri = ""
-    st.session_state.list_discription.append(discri)
-    driver_2.quit()
-
-@st.cache_resource
-def data_get_linkdin():
-    options = Options()
-    options.add_argument('--disable-gpu')
-    options.add_argument('--headless')
-    options.add_argument("--test-type")
-    options.add_argument('--log-level=3')
-    options.add_argument("--start-maximized")
-    options.add_argument("--disable-web-security")
-    options.add_argument("--allow-running-insecure-content")
-    options.add_argument("--mute-audio")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-features=NetworkService")
-    options.add_argument("--window-size=1920x1080")
-    options.add_argument("--disable-features=VizDisplayCompositor")
-    options.add_argument("--start-maximized")
-    options.add_argument('--disable-blink-features=AutomationControlled')
-    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.517 Safari/537.36'
-    options.add_argument('user-agent={0}'.format(user_agent))
-    # driver_linkdin = webdriver.Chrome(service=ChromeService(executable_path="D:\\chromedriver\\chromedriver.exe"), options=options)
-    driver_linkdin  = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    driver_linkdin.get("https://www.linkedin.com/jobs/")
-    # time.sleep(1)
-
-    try:
-        email = driver_linkdin.find_element(by=By.ID, value="session_key")
-        email.clear()
-        email.send_keys("bontop.2018@gmail.com")
-        password = driver_linkdin.find_element(by=By.ID, value="session_password")
-        password.clear()
-        password.send_keys("T8<)_mc~/xXEZ:7")
-        time.sleep(2)
-        submit_login = driver_linkdin.find_element(by=By.CLASS_NAME, value="sign-in-form__submit-button")
-        submit_login.click()
-    except:
-        discri = ""
-    # st.session_state.list_discription.append(discri)
-    driver_linkdin.quit()
 def stocke_data(list_li):
     for i in range(len(list_li)):
-        link_job = list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(
-            by=By.TAG_NAME, value='a').get_attribute("href")
+        link_job="https://ma.indeed.com"+list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
         st.session_state.list_link_job.append(link_job)
-        title=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").text
+        st.markdown(link_job)
+        title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
         st.session_state.list_title_jobs.append(title)
-        comany_location=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text
+        comany_location = list_li[i].find("div", {"class":"companyLocation"}).text
         st.session_state.list_company_location.append(comany_location)
         try:
-            company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
+            company_name = list_li[i].find("span", {"class":"companyName"}).text
         except:
             company_name=None
         st.session_state.list_company_name.append(company_name)
 
-        # resultat = requests.get(link_job)
-        # soup = BeautifulSoup(resultat.content, "lxml")
-        # try:
-        #     # st.code(soup.find("div", {"id": "jobDescriptionText"}))
-        #     open_page(link_job)
-        # except:
-        #     print(link_job)
-        #
 
+@st.cache_resource
+def get_description():
+    for url in range(len(st.session_state.list_link_job)):
+        resulta = get_pg_source(st.session_state.list_link_job[url])
+        soup = BeautifulSoup(resulta, "lxml")
+        try:
+            discri = soup.find("div", {"id": "jobDescriptionText"}).text
+        except:
+            discri = ""
+        st.session_state.list_discription.append(discri)
 
 def kolchi():
-    driver = get_driver()
-    # driver.get("https://ma.indeed.com")
-    # time.sleep(5)
-    driver.get("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
-    time.sleep(4)
-    # driver.find_element(by=By.CSS_SELECTOR, value="span[class='mark']").click()
-    page_total = driver.find_element(by=By.CLASS_NAME, value="jobsearch-JobCountAndSortPane-jobCount").text
-
+    resulta = get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+    soup = BeautifulSoup(resulta, "lxml")
+    # st.markdown("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+    page_total = soup.find("div", {'class': 'jobsearch-JobCountAndSortPane-jobCount'}).text
     if int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) == 15:
         page_total_of_search = 1
     else:
         page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
-    list_li = driver.find_elements(by=By.CSS_SELECTOR, value="div[class='slider_item css-kyg8or eu4oa1w0']")
-    # st.markdown(page_total)
-    # st.markdown(page_total_of_search)
+    list_li = soup.findAll("div", {"class": "slider_item css-kyg8or eu4oa1w0"})
+    st.markdown(f"number of jobs :::: {page_total_of_search}")
     stocke_data(list_li)
-    counttt = len(list_li)
-    # st.code(counttt)
     i_counter = 1
     while True:
         if i_counter < page_total_of_search:
-            driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
-            list_li = driver.find_elements(by=By.CSS_SELECTOR,
-                                           value="div[class='slider_container css-g7s71f eu4oa1w0']")
-            counttt += len(list_li)
-            # st.markdown(i_counter)
+            resulta = get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+            soup = BeautifulSoup(resulta, "lxml")
+            list_li = soup.findAll("div", {"class": "slider_item css-kyg8or eu4oa1w0"})
             stocke_data(list_li)
+            st.markdown(i_counter)
             i_counter += 1
         else:
             break
-    driver.quit()
-
-    for url in range(len(st.session_state.list_link_job)):
-        open_page(st.session_state.list_link_job[url])
-
-    # for ii in range(len(list_link_job)):
-    #     driver.get(list_link_job[ii])
-    #     try:
-    #         time.sleep(1)
-    #         # soup=BeautifulSoup(driver.page_source, "lxml")
-    #         list_linkk = driver.find_element(by=By.ID, value="jobDescriptionText")
-    #         # st.markdown(soup.find("div", {"id":"jobDescriptionText"}).)
-    #         list_discription.append(list_linkk.text)
-    #     except:
-    #         list_discription.append("none")
-    # display_data()
+    get_description()
 
 
 
