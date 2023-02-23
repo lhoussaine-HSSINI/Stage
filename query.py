@@ -47,6 +47,7 @@ def get_pg_source(url:str):
 def stocke_data(list_li):
     for i in range(len(list_li)):
         link_job="https://ma.indeed.com"+list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
+        st.code(link_job)
         # st.session_state.list_link_job.append(link_job)
         title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
         # st.session_state.list_title_jobs.append(title)
