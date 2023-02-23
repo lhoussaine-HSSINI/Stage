@@ -47,19 +47,39 @@ def get_pg_source(url:str):
 def stocke_data(list_li):
     for i in range(len(list_li)):
         link_job="https://ma.indeed.com"+list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
-        # st.session_state.list_link_job.append(link_job)
+        st.session_state.list_link_job.append(link_job)
         st.markdown(link_job)
         title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
-        # st.session_state.list_title_jobs.append(title)
+        st.session_state.list_title_jobs.append(title)
         comany_location = list_li[i].find("div", {"class":"companyLocation"}).text
-        # st.session_state.list_company_location.append(comany_location)
+        st.session_state.list_company_location.append(comany_location)
         try:
             company_name = list_li[i].find("span", {"class":"companyName"}).text
         except:
             company_name=None
-        # st.session_state.list_company_name.append(company_name)
+        st.session_state.list_company_name.append(company_name)
+
+
+@st.cache_resource
+def get_description():
+    for url in range(len(st.session_state.list_link_job)):
+        resulta = get_pg_source(st.session_state.list_link_job[url])
+        soup = BeautifulSoup(resulta, "lxml")
+        try:
+            discri = soup.find("div", {"class": "jobDescriptionText"}).text
+        except:
+            discri = ""
+        st.session_state.list_discription.append(discri)
 
 def gettt():
+    # Create an empty list to store values in session
+    if 'list_discription' not in st.session_state:
+        st.session_state['list_discription'] = []
+        st.session_state['list_title_jobs'] = []
+        st.session_state['list_company_location'] = []
+        st.session_state['list_company_name'] = []
+        st.session_state['list_link_job'] = []
+
     resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     soup = BeautifulSoup(resulta, "lxml")
     # st.markdown("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
@@ -74,7 +94,6 @@ def gettt():
     i_counter = 1
     while True:
         if i_counter < page_total_of_search:
-            st.markdown(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
             resulta = get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
             soup = BeautifulSoup(resulta, "lxml")
             list_li = soup.findAll("div", {"class": "slider_item css-kyg8or eu4oa1w0"})
@@ -84,5 +103,7 @@ def gettt():
         else:
             break
 
+    get_description()
+    st.markdown(st.session_state.list_discription)
 
 gettt()
