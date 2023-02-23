@@ -48,7 +48,7 @@ def get_pg_source(url:str):
 def gettt():
     resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     soup = BeautifulSoup(resulta, "lxml")
-    st.code(soup)
+    st.markdown("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     page_total = soup.find("div", {'class':'jobsearch-JobCountAndSortPane-jobCount'}).text
     if int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) == 15:
         page_total_of_search = 1
