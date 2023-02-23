@@ -51,14 +51,15 @@ def stocke_data(list_li):
         # st.session_state.list_link_job.append(link_job)
         title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
         # st.session_state.list_title_jobs.append(title)
-        # comany_location=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text
         comany_location = list_li[i].find("div", {"class":"companyLocation"}).text
         st.code(comany_location)
         # st.session_state.list_company_location.append(comany_location)
-        # try:
+        try:
         #     company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
-        # except:
-        #     company_name=None
+            company_name = list_li[i].find("span", {"class":"companyName"}).text
+            st.code(company_name)
+        except:
+            company_name=None
         # st.session_state.list_company_name.append(company_name)
 
 def gettt():
