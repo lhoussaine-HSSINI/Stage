@@ -60,7 +60,7 @@ def stocke_data(list_li):
         # st.session_state.list_company_name.append(company_name)
 
 def gettt():
-    resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=3")
+    resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     soup = BeautifulSoup(resulta, "lxml")
     # st.markdown("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     page_total = soup.find("div", {'class':'jobsearch-JobCountAndSortPane-jobCount'}).text
@@ -74,7 +74,7 @@ def gettt():
     i_counter = 1
     while True:
         if i_counter < page_total_of_search:
-            st.markdown(f"https://ma.indeed.com/jobs?q=stage+web&fromage=3&start={i_counter}0")
+            st.markdown(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
             resulta = get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
             soup = BeautifulSoup(resulta, "lxml")
             list_li = soup.findAll("div", {"class": "slider_item css-kyg8or eu4oa1w0"})
