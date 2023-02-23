@@ -18,11 +18,11 @@ from selenium.webdriver.chrome.service import Service
 
 
 
-
+@st.cache_resource
 def get_pg_source(url:str):
     options = Options()
     options.add_argument('--disable-gpu')
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     options.add_argument("--test-type")
     options.add_argument('--log-level=3')
     options.add_argument("--start-maximized")
@@ -38,11 +38,12 @@ def get_pg_source(url:str):
     options.add_argument('--disable-blink-features=AutomationControlled')
     user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.517 Safari/537.36'
     options.add_argument('user-agent={0}'.format(user_agent))
-    #
-    # driver_1 = webdriver.Chrome(service=ChromeService(executable_path="D:\\chromedriver\\chromedriver.exe"),
-    #                             options=options)
-    driver_1 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+    driver_1 = webdriver.Chrome(service=ChromeService(executable_path="D:\\chromedriver\\chromedriver.exe"),
+                                options=options)
+    # driver_1 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver_1.get(url)
+    time.sleep(3)
     pg=driver_1.page_source
     driver_1.close()
     driver_1.quit()
