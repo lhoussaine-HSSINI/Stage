@@ -53,6 +53,7 @@ def stocke_data(list_li):
     for i in range(len(list_li)):
         link_job="https://ma.indeed.com"+list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
         st.session_state.list_link_job.append(link_job)
+        get_description(link_job)
         st.markdown(link_job)
         title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
         st.session_state.list_title_jobs.append(title)
@@ -65,16 +66,14 @@ def stocke_data(list_li):
         st.session_state.list_company_name.append(company_name)
 
 
-@st.cache_resource
-def get_description():
-    for url in range(len(st.session_state.list_link_job)):
-        resulta = get_pg_source(st.session_state.list_link_job[url])
-        soup = BeautifulSoup(resulta, "lxml")
-        try:
-            discri = soup.find("div", {"id": "jobDescriptionText"}).text
-        except:
-            discri = ""
-        st.session_state.list_discription.append(discri)
+def get_description(url:str):
+    resulta = get_pg_source(url)
+    soup = BeautifulSoup(resulta, "lxml")
+    try:
+        discri = soup.find("div", {"id": "jobDescriptionText"}).text
+    except:
+        discri = ""
+    st.session_state.list_discription.append(discri)
 
 def kolchi():
     resulta = get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
@@ -99,7 +98,7 @@ def kolchi():
             i_counter += 1
         else:
             break
-    get_description()
+    # get_description()
 
 
 
