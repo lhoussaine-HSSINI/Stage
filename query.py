@@ -47,7 +47,6 @@ def get_pg_source(url:str):
 def stocke_data(list_li):
     for i in range(len(list_li)):
         link_job="https://ma.indeed.com"+list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
-        st.code(link_job)
         # st.session_state.list_link_job.append(link_job)
         title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
         # st.session_state.list_title_jobs.append(title)
@@ -60,7 +59,7 @@ def stocke_data(list_li):
         # st.session_state.list_company_name.append(company_name)
 
 def gettt():
-    resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web")
+    resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     soup = BeautifulSoup(resulta, "lxml")
     # st.markdown("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     page_total = soup.find("div", {'class':'jobsearch-JobCountAndSortPane-jobCount'}).text
@@ -71,5 +70,19 @@ def gettt():
     list_li = soup.findAll("div", {"class":"slider_item css-kyg8or eu4oa1w0"})
     st.markdown(f"number of jobs :::: {page_total_of_search}")
     stocke_data(list_li)
+    i_counter = 1
+    while True:
+        if i_counter < page_total_of_search:
+            st.markdown(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
+            # driver.get(f"https://ma.indeed.com/jobs?q=stage+web&fromage=1&start={i_counter}0")
+            # list_li = driver.find_elements(by=By.CSS_SELECTOR,
+            #                                value="div[class='slider_container css-g7s71f eu4oa1w0']")
+            # counttt += len(list_li)
+            # # st.markdown(i_counter)
+            st.markdown(i_counter)
+            i_counter += 1
+        else:
+            break
+
 
 gettt()
