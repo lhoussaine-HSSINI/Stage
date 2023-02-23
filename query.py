@@ -53,8 +53,10 @@ def gettt():
     if int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) == 15:
         page_total_of_search = 1
     else:
-        page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
+        page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1])//15 + 1
     list_li = soup.findAll("div", {"class":"slider_item css-kyg8or eu4oa1w0"})
     st.markdown(f"number of jobs :::: {page_total_of_search}")
-    st.markdown(len(list_li))
+    st.markdown(list_li)
+
+
 gettt()
