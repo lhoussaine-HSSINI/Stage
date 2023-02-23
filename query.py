@@ -44,6 +44,21 @@ def get_pg_source(url:str):
     driver_1.quit()
     return pg
 
+def stocke_data(list_li):
+    for i in range(len(list_li)):
+        # link_job = list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(
+        #     by=By.TAG_NAME, value='a').get_attribute("href")
+        # st.session_state.list_link_job.append(link_job)
+        title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
+        st.markdown(title)
+        # st.session_state.list_title_jobs.append(title)
+        # comany_location=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text
+        # st.session_state.list_company_location.append(comany_location)
+        # try:
+        #     company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
+        # except:
+        #     company_name=None
+        # st.session_state.list_company_name.append(company_name)
 
 def gettt():
     resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
@@ -56,7 +71,6 @@ def gettt():
         page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1])//15 + 1
     list_li = soup.findAll("div", {"class":"slider_item css-kyg8or eu4oa1w0"})
     st.markdown(f"number of jobs :::: {page_total_of_search}")
-    st.markdown(list_li)
-
+    stocke_data(list_li)
 
 gettt()
