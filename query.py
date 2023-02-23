@@ -48,7 +48,7 @@ def stocke_data(list_li):
     for i in range(len(list_li)):
         # link_job = list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(
         #     by=By.TAG_NAME, value='a').get_attribute("href")
-        link_job=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"})
+        link_job=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
         st.markdown(link_job)
         # st.session_state.list_link_job.append(link_job)
         title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
@@ -65,7 +65,7 @@ def stocke_data(list_li):
 def gettt():
     resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     soup = BeautifulSoup(resulta, "lxml")
-    st.markdown("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+    # st.markdown("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     page_total = soup.find("div", {'class':'jobsearch-JobCountAndSortPane-jobCount'}).text
     if int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) == 15:
         page_total_of_search = 1
