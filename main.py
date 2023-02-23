@@ -2,7 +2,7 @@ import streamlit as st
 from mypage import Apprenante_A2, Apprenante_A1, Home
 from streamlit_option_menu import option_menu
 
-
+st.set_page_config(page_title="Faho App", page_icon="🤖")
 # Create an empty list to store values in session
 if 'list_discription' not in st.session_state:
     st.session_state['list_discription'] = []
@@ -107,3 +107,4 @@ if __name__ == "__main__":
     css_my_ap_all()
     main()
     js_my_app()
+
