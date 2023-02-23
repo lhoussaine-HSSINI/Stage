@@ -75,7 +75,7 @@ def get_description():
         resulta = get_pg_source(st.session_state.list_link_job[url])
         soup = BeautifulSoup(resulta, "lxml")
         try:
-            discri = soup.find("div", {"class": "jobDescriptionText"}).text
+            discri = soup.find("div", {"id": "jobDescriptionText"}).text
         except:
             discri = ""
         st.session_state.list_discription.append(discri)
