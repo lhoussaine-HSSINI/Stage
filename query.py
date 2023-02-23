@@ -59,7 +59,7 @@ def stocke_data(list_li):
         # st.session_state.list_company_name.append(company_name)
 
 def gettt():
-    resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+    resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web")
     soup = BeautifulSoup(resulta, "lxml")
     # st.markdown("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     page_total = soup.find("div", {'class':'jobsearch-JobCountAndSortPane-jobCount'}).text
