@@ -46,15 +46,14 @@ def get_pg_source(url:str):
 
 def stocke_data(list_li):
     for i in range(len(list_li)):
-        # link_job = list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='css-1m4cuuf e37uo190']").find_element(
-        #     by=By.TAG_NAME, value='a').get_attribute("href")
-        link_job=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
-        st.code("https://ma.indeed.com"+link_job)
+        link_job="https://ma.indeed.com"+list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
+        st.code(link_job)
         # st.session_state.list_link_job.append(link_job)
         title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
-
         # st.session_state.list_title_jobs.append(title)
         # comany_location=list_li[i].find_element(by=By.CSS_SELECTOR, value="div[class='companyLocation']").text
+        comany_location = list_li[i].find("div", {"class":"companyLocation"}).text
+        st.code(comany_location)
         # st.session_state.list_company_location.append(comany_location)
         # try:
         #     company_name =list_li[i].find_element(by=By.CSS_SELECTOR, value="span[class='companyName']").text
