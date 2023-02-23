@@ -47,23 +47,19 @@ def get_pg_source(url:str):
 def stocke_data(list_li):
     for i in range(len(list_li)):
         link_job="https://ma.indeed.com"+list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
-        st.code(link_job)
         # st.session_state.list_link_job.append(link_job)
         title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
         # st.session_state.list_title_jobs.append(title)
-        st.code(title)
         comany_location = list_li[i].find("div", {"class":"companyLocation"}).text
         # st.session_state.list_company_location.append(comany_location)
-        st.code(comany_location)
         try:
             company_name = list_li[i].find("span", {"class":"companyName"}).text
         except:
             company_name=None
         # st.session_state.list_company_name.append(company_name)
-        st.code(company_name)
 
 def gettt():
-    resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
+    resulta=get_pg_source("https://ma.indeed.com/jobs?q=stage+web")
     soup = BeautifulSoup(resulta, "lxml")
     # st.markdown("https://ma.indeed.com/jobs?q=stage+web&fromage=1")
     page_total = soup.find("div", {'class':'jobsearch-JobCountAndSortPane-jobCount'}).text
