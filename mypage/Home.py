@@ -85,7 +85,7 @@ def kolchi():
     else:
         page_total_of_search = int([int(s) for s in re.findall(r'-?\d+\.?\d*', page_total)][-1]) // 15 + 1
     list_li = soup.findAll("div", {"class": "slider_item css-kyg8or eu4oa1w0"})
-    st.markdown(f"number of jobs :::: {page_total_of_search}")
+    # st.markdown(f"number of jobs :::: {page_total_of_search}")
     stocke_data(list_li)
     i_counter = 1
     while True:
@@ -157,5 +157,5 @@ def app():
         kolchi()
         # data_get_linkdin()
         st.session_state.key += 1
-    st.markdown(len(st.session_state.list_discription))
-    st.markdown(len(st.session_state.list_title_jobs))
+    # st.markdown(len(st.session_state.list_discription))
+    # st.markdown(len(st.session_state.list_title_jobs))

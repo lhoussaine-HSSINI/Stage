@@ -42,14 +42,12 @@ def css_my_ap_all():
                 text-decoration: none;
             }
             .css-1gk2i2l ,.e17lx80j0 {visibility: hidden;}
-
+            .css - 4 z1n4l,.ehezqtx5 {visibility: hidden;} 
+            .viewerBadge_container__1QSob {visibility: hidden;}
+            body {background-color: #fff !important;}
                 </style>
                 """
-    # .css - 4
-    # z1n4l,.ehezqtx5
-    # {visibility: hidden;}
-    # .viewerBadge_container__1QSob
-    # {visibility: hidden;}
+
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" '
                 'integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" '
