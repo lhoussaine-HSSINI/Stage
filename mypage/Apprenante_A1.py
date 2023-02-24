@@ -8,9 +8,7 @@ def app():
     st.markdown(""" <h1 class='text-center fs-1 headdd'>Search stage</h1> """, unsafe_allow_html=True)
     Categorie_add_1 = st.multiselect('competence',
                                      ['Html', 'Css', 'Java script', 'Php',
-                                      'JAVA', 'Python',
-                                      'Articulations ', ' Rumatismes', 'Minceur & Fermeté', 'Forme & Energie',
-                                      'Spécial Femme'])
+                                      'JAVA', 'Python'])
     if Categorie_add_1:
         for i in range(len(st.session_state.list_discription)):
             if re.compile('|'.join(Categorie_add_1), re.IGNORECASE).search(st.session_state.list_discription[i]):
