@@ -74,8 +74,8 @@ with st.sidebar:
                             styles={
                                 "container": {"padding": "0!important", "background-color": "#fafafa"},
                                 "nav-link": {"font-size": "14px!important", "text-align": "center", "margin": "0px",
-                                             "--hover-color": "#eee"},
-                                "nav-link-selected": {"background-color": "green", "font-size": "16px!important"},
+                                             "--hover-color": "#eee", "color":"#9722FF !important"},
+                                "nav-link-selected": {"background": "#e9ecef !important;", "font-size": "16px!important"},
                                 "viewerBadge_container__1QSob" :{"visibility": "hidden !important"}
                             }
                             )
