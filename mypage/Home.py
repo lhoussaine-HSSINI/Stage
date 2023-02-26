@@ -43,9 +43,9 @@ def get_pg_source(url:str):
     #                             options=options)
     driver_1 = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver_1.get(url)
-    time.sleep(3)
+    time.sleep(2)
     pg=driver_1.page_source
-    driver_1.close()
+    # driver_1.close()
     driver_1.quit()
     return pg
 
@@ -54,8 +54,8 @@ def stocke_data(list_li):
         link_job="https://ma.indeed.com"+list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a")["href"]
         st.session_state.list_link_job.append(link_job)
         get_description(link_job)
-        st.markdown(link_job)
-        title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).text
+        # st.markdown(link_job)
+        title=list_li[i].find("div", {"class":"css-1m4cuuf e37uo190"}).find("a").text
         st.session_state.list_title_jobs.append(title)
         comany_location = list_li[i].find("div", {"class":"companyLocation"}).text
         st.session_state.list_company_location.append(comany_location)
